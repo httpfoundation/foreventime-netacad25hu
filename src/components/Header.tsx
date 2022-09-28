@@ -104,7 +104,7 @@ const Header = () => {
 					<Fab color="secondary" aria-label="home" sx={{position: 'absolute', right: 30, top: {lg: 80, xs: 'unset'}, bottom: {lg: 'unset', xs: 10}, zIndex: 800}} component={Link} to="/" >
 						<HomeIcon />
 					</Fab>
-				</Tooltip>
+				</Tooltip>	
 			</Zoom>
 		)}
 		{location.pathname !== "/infopult" && (

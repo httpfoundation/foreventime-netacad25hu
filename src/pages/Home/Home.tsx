@@ -1,6 +1,6 @@
 //import { useStages } from "../../Store"
 import { PageContainer, PageTitle } from "../../components"
-import { DashboardItemType } from "../../types"
+import { DashboardElement, DashboardItemType } from "../../types"
 
 
 import recepcio from "../../assets/images/recepcio.png"
@@ -19,7 +19,7 @@ import galeria from "../../assets/images/galeria.png"
 import Dashboard from "../../components/Dashboard"
 import Welcome from "../Welcome";
 import { useMemo } from "react"
-import { useLiveStaticElements } from "../../Store"
+import { useLiveStaticElements, useDashboardElements } from "../../Store"
 
 
 
@@ -27,11 +27,19 @@ import { useLiveStaticElements } from "../../Store"
 const Home = () => {
 
     const { galleryUrl } = useLiveStaticElements()
+    const  dashboardElements  = useDashboardElements("home")
+    console.log("dashboardElements", dashboardElements)
 
-    const homeDashboardItems : DashboardItemType[] = useMemo(() => [
+
+    const homeDashboardItems : DashboardElement[] = useMemo(() => 
+        [...dashboardElements], 
+        [dashboardElements]
+    )
+
+/*     const homeDashboardItems : DashboardItemType[] = useMemo(() => [
 
         {
-            caption: "Nagyelőadó",
+            caption: "Konferenciaterem",
             title: "Délelőtti plenáris előadások a nagyelőadóban",
             img: nagyEloado,
             hoverImg: nagyEloadonyitva,
@@ -60,7 +68,7 @@ const Home = () => {
             link: "/szekcio/digitalis-kultura",
             mobileOrder: 3
         },
-        /* {
+{
             caption: "IOK Cafe",
             title: "Résztvevők egymás közötti élő beszélgetése négy tematikus asztalnál az IOK kávézójában",
             img: iokCafe,
@@ -68,7 +76,7 @@ const Home = () => {
             light: true,
             link: "/iok-cafe",
             mobileOrder: 6
-        }, */
+        },
         {
             caption: "Galéria",
             title: "Megnézheted az eseményen készült fótókat",
@@ -118,7 +126,7 @@ const Home = () => {
             mobileOrder: 7
         },
             
-    ], [galleryUrl])
+    ], [galleryUrl]) */
     
 	
     return (

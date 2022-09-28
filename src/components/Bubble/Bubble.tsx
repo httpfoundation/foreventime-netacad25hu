@@ -57,6 +57,7 @@ const LinkOrOnClick = (props: {to?: string, onClick?: () => void, children: Reac
 
 const Bubble = (props: BubbleProps) => {
 	const { size, corner, timeout, caption, title, tooltipPlacement, img, imgWidth, hoverImg, external } = props
+	console.log("img", img)
 	//"xl" is the default size
  	const width = (size === "xs") ? "350px" : (size === "lg") ? "200px" :  "450px"
 	const borderRadius = (size === "xs") ? "250px" : (size === "lg") ? "140px" : "350px" 

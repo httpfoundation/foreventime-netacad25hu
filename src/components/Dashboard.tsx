@@ -1,7 +1,7 @@
 import { Grid, useMediaQuery, Box, Tooltip }  from "@mui/material"
 import { styled, useTheme } from "@mui/material/styles"
 import Bubble from "./Bubble/Bubble"
-import { DashboardItemType } from "../types"
+import { DashboardElement, DashboardItemType } from "../types"
 import React, { useMemo } from "react"
 
 
@@ -36,8 +36,9 @@ interface DashboardItemProps {
 
 
 
-const Dashboard = (props : {items: DashboardItemType[]}) => {
+const Dashboard = (props : {items: DashboardElement[]}) => {
     const {items} = props
+	console.log("items", items )
     const theme = useTheme();
     const upperThanLg = useMediaQuery(theme.breakpoints.up("lg"))
 	const upperThanMd = useMediaQuery(theme.breakpoints.up("md"))
@@ -65,8 +66,8 @@ const Dashboard = (props : {items: DashboardItemType[]}) => {
 
 						<DashboardItem
 							caption={caption}
-							img={img}
-							hoverImg={hoverImg}
+							img={img?.url || ""}
+							hoverImg={hoverImg?.url || ""}
 							to={link}
 							external={external}
 							xs={xs}
@@ -92,8 +93,9 @@ const Dashboard = (props : {items: DashboardItemType[]}) => {
 
 
 export const DashboardItem = (props: DashboardItemProps) => {
-
+	
     const { img, caption, title, to, imgWidth, corner, size, xs, xl, lg, empty, light, timeout, tooltipPlacement, onClick, hoverImg, external } = props
+	
 	if (empty) return <Grid item xs={xs} xl={xl} lg={lg} display="flex" ></Grid>
 	
 

@@ -12,9 +12,12 @@ import menucard from "../../assets/images/menucard.png"
 import {  Container, } from "@mui/material"
 
 import Dashboard from "../../components/Dashboard"
-import { DashboardItemType } from "../../types"
+import { DashboardElement, DashboardItemType } from "../../types"
+import { useDashboardElements } from "../../Store"
 
-const receptionDashboardItems : DashboardItemType[] = [
+
+
+/* const receptionDashboardItems : DashboardItemType[] = [
     {
         caption: "Köszöntő",
         title: "Üdvözlő szép szavak az elnök úrtól",
@@ -89,9 +92,10 @@ const receptionDashboardItems : DashboardItemType[] = [
     },
         
 ]
-
+ */
 
 const Reception = () => {
+    const receptionDashboardItems : DashboardElement[] = useDashboardElements("reception")
 	return (
 		<PageContainer>
             <Container>

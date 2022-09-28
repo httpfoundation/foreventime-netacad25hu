@@ -4,7 +4,7 @@ import PageTitle from "../components/PageTitle"
 import { Box, Button, Container, Grid, Typography, TypographyProps } from "@mui/material"
 import { styled } from "@mui/system"
 import { StructuredText } from "react-datocms"
-import { useLiveStaticElements, useRegistration } from "../Store"
+import { useLiveStaticElements, usePresident, useRegistration } from "../Store"
 import {Home as HomeIcon, PermDeviceInformation as InformationIcon } from '@mui/icons-material'
 import { Link } from "react-router-dom"
 
@@ -13,7 +13,7 @@ const ChairmanImage = styled('img')`
 	height: auto;
 	border-radius: 20px;
 `
-const chairman = 
+const chairman2 = 
     {
             name: "Sisák Zoltán",
             title: "elnök",
@@ -23,6 +23,7 @@ const chairman =
             id: "107304877",
             company: "HTTP Alapítvány",
     }
+
 
 const Title = styled(Typography)<TypographyProps>(({theme}) => `
 	text-align: "left";
@@ -40,6 +41,8 @@ const Name = styled(Typography)<TypographyProps>(({theme}) => `
 const Welcome = () => {
     const {welcome} = useLiveStaticElements()
 	const [registration, loading] = useRegistration()
+	const chairman = usePresident() 
+	console.log("president", chairman)
     window.localStorage.setItem("welcome", "true") 
 	return (
  		<PageContainer container>

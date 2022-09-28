@@ -3,7 +3,7 @@ import { lazy, Suspense, useEffect, useState } from 'react'
 import { BackButton, PageContainer, PageTitle } from '../../components'
 import Dashboard from '../../components/Dashboard'
 import { useBreakoutRooms, useRegistration } from '../../Store'
-import { DashboardItemType, DatoBreakoutRoom } from "../../types"
+import { DashboardElement, DashboardItemType, DatoBreakoutRoom } from "../../types"
 
 import iokCafe0 from "../../assets/images/iokcafe.png"
 import iokCafe1 from "../../assets/images/iokcafe2.png"
@@ -98,17 +98,20 @@ const BreakoutRoom = () => {
 
 	const iokCafeImages = [iokCafe0, iokCafe1, iokCafe2, iokCafe3]
 
-	const dashboardItems: WebexRoomDashboardItem[] = rooms.map((room, index) => ({
+	const dashboardItems: DashboardElement[] = rooms.map((room, index) => ({
 		caption: room.title,
 		mobileOrder: index,
 		title: "",
 		light: true,
-		img: iokCafeImages[index],
+		img: {url: iokCafeImages[index % iokCafeImages.length]},
+		//img: iokCafeImages[index],
 		corner: "none",
 		onClick: () => {
 			setSelectedRoom(room)
 			navigate("/iok-cafe/webex")
 		},
+		enabled: true,
+		dashboardType: "cafe" 
 	}))
 
 	if (meetingDestination) console.log("Meeting destination:", meetingDestination)

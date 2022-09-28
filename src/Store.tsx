@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react"
 import { useSearchParams } from "react-router-dom"
-import { DatoStage, DatoSpeaker, DatoTalk, DatoComplex, DatoBreakoutRoom, DatoLiveStaticElement, DatoMessage, DatoStaff, DatoStream } from "./types"
+import Dashboard from "./components/Dashboard"
+import { DatoStage, DatoSpeaker, DatoTalk, DatoComplex, DatoBreakoutRoom, DatoLiveStaticElement, DatoMessage, DatoStaff, DatoStream, DashboardElement } from "./types"
 import useQuery from "./useQuery"
 
 export interface IStore {
@@ -17,6 +18,7 @@ export interface IStore {
 	liveStaticElements: DatoLiveStaticElement
 	messages: DatoMessage[]
 	staff: DatoStaff[]
+	dashboardElements: DashboardElement[]
 }
 
 export const Store = createContext<IStore>({
@@ -32,7 +34,8 @@ export const Store = createContext<IStore>({
 	registrationError: false,
 	liveStaticElements: {},
 	messages: [],
-	staff: []
+	staff: [],
+	dashboardElements: []
 })
 
 type RegistrationData = {
@@ -48,11 +51,12 @@ const useRegistrationData = (regId: string|null, regNeeded = true) : [Registrati
 	const [registrationData, setRegistrationData] = useState<RegistrationData|null>(null)
 	const [loading, setLoading] = useState(true)
 	const [error, setError] = useState(false)
+	const event = useEvent()
 
+	//window.localStorage.removeItem("iok_registration_data")
 	useEffect(() => {
 		(async () => {
 			if (regId && String(regId) !== String(JSON.parse(window.localStorage.getItem("iok_registration_data") as string)?.id)) {
-				console.log('FETCH REGISTRATION DATA')
 				window.localStorage.removeItem("iok_registration_data")
 				const res = await fetch("https://wy8qg2hpoh.execute-api.eu-west-1.amazonaws.com/default/iokRegistrationData?id=" + regId)
 				const data = await res.json()
@@ -66,11 +70,14 @@ const useRegistrationData = (regId: string|null, regNeeded = true) : [Registrati
 			} else if (window.localStorage.getItem("iok_registration_data")) {
 				setRegistrationData(JSON.parse(window.localStorage.getItem("iok_registration_data") as string))
 			} else if (!regNeeded) {
+				
+
 				const data = {
 					"id": null,
 					"name": "Résztvevő",
 					"webex_access_token": null,
-					"dato_token": "86562f6d25113edf16c2608cedf976",
+					//"dato_token": "53ed3bb4aec52b9c6626a233309ada", // LiveVisitor token, EducationNext2022
+					"dato_token": "86562f6d25113edf16c2608cedf976", // LiveVisitor token, IOK2022	
 					"stage": null,
 					"onsite": false
 				}
@@ -191,7 +198,8 @@ export const StoreProvider = (props: { children: React.ReactElement }) => {
 				streamNotLive {
 					value
 				}
-				galleryUrl		
+				galleryUrl
+				presidentStaffId		
 			}
 			allSpeakers(first: 100) {
 				id
@@ -246,10 +254,44 @@ export const StoreProvider = (props: { children: React.ReactElement }) => {
 					playRecordingText
 				}
 			}
+			allDashboardElements {
+				light
+				link
+				mobileOrder
+				title
+				caption
+				corner
+				hoverImg {
+				  url
+				}
+				img {
+				  url
+				}
+				enabled
+				dashboardType
+			  }
 	  	}
-	`, {allStages: [], allBreakoutrooms: [], liveStaticElement: {}, allSpeakers: [], allMessages: [], allStaffs: [], allStreams: []})
-
-	const {allStages : stages, allStreams: streams, allBreakoutrooms: breakoutRooms, liveStaticElement: liveStaticElements, allSpeakers: presenters, allMessages: messages, allStaffs: staff} = data
+	`, {
+		allStages: [], 
+		allBreakoutrooms: [], 
+		liveStaticElement: {}, 
+		allSpeakers: [], 
+		allMessages: [], 
+		allStaffs: [], 
+		allStreams: [], 
+		allDashboardElements: []
+	})
+	console.log("data", data)
+	const {
+		allStages : stages, 
+		allStreams: streams, 
+		allBreakoutrooms: breakoutRooms, 
+		liveStaticElement: liveStaticElements, 
+		allSpeakers: presenters, 
+		allMessages: messages, 
+		allStaffs: staff,
+		allDashboardElements: dashboardElements
+	} 	= data
 
 	const talks = useMemo(() => {
 		const talks: DatoTalk[] = []
@@ -284,8 +326,25 @@ export const StoreProvider = (props: { children: React.ReactElement }) => {
 		registrationError,
 		liveStaticElements,
 		messages,
-		staff
-	}), [stages, presenters, talks, breakoutRooms, pageTitle, setPageTitle, registration, registrationLoading, registrationError, liveStaticElements, messages, staff])
+		staff,
+		dashboardElements
+	}), [
+			stages, 
+			presenters, 
+			talks, 
+			breakoutRooms, 
+			pageTitle, 
+			setPageTitle, 
+			registration, 
+			registrationLoading, 
+			registrationError, 
+			liveStaticElements, 
+			messages, 
+			staff,
+			streams,
+			dashboardElements
+		]
+	)
 
 	return <Store.Provider value={store}>{props.children}</Store.Provider>
 }
@@ -327,6 +386,13 @@ export const useLiveStaticElements = () => {
 	return store.liveStaticElements
 }
 
+export const usePresident = () => {
+	const store = useStore()
+	const staff = store.staff
+	console.log("staff", staff)
+	const presidentStaffId = store.liveStaticElements.presidentStaffId
+	return staff.find((staffMember) => staffMember.id == presidentStaffId)
+}
 
 export const useStage = (stageSlug?: string) => {
 	const store = useStore()
@@ -379,5 +445,16 @@ export const useStreams = () => {
 	const store = useStore()
 	return store.streams
 }
+
+export const useEvent = () => {
+	return process.env.EVENT
+}
+
+export const useDashboardElements = (type: string) => {
+	const store = useStore()
+	const dashboardElements = store.dashboardElements.filter(element => element.dashboardType === type )
+	return dashboardElements	
+}
+
 
 export default Store

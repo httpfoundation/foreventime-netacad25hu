@@ -98,6 +98,7 @@ export type DatoComplex = {
 	allSpeakers: DatoSpeaker[]
 	allMessages: DatoMessage[]
 	allStaffs: DatoStaff[]
+	allDashboardElements: DashboardElement[]
 }
 
 export type DatoMessage = {
@@ -139,4 +140,24 @@ export type DatoLiveStaticElement = {
 		menuImage?: any
 		streamNotLive?: any
 		galleryUrl?: string
+		presidentStaffId?: number
 	}
+
+export type DashboardElement = {
+	caption: string
+	title: string
+	corner: 'bl' | 'br' | 'tl' | 'tr' | 'none'
+	light: boolean
+	img: {
+		url: string
+	}
+	hoverImg?: {
+		url: string
+	}
+	link?: string
+	mobileOrder: number
+	onClick?: () => void
+	external?: boolean
+	enabled: boolean
+	dashboardType: 'home' | 'reception' | 'cafe'
+}
