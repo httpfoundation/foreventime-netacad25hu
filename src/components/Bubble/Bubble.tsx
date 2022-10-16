@@ -74,7 +74,7 @@ const Bubble = (props: BubbleProps) => {
 	return (
 		<Tooltip title={title ?? ""} placement={tooltipPlacement ?? "top"} arrow  >
 			<BubbleWrapper bubbleWrapperProps={bubbleWrapperProps} onMouseEnter = {() => {if (hoverImg) setImage(hoverImg)}} onMouseLeave={() => {if (hoverImg) setImage(img)}}>
-				<BubbleWrapper2 bubbleWrapperProps={bubbleWrapperProps}></BubbleWrapper2>
+				<BubbleDecoration bubbleWrapperProps={bubbleWrapperProps}></BubbleDecoration>
 				<LinkOrOnClick external={external} to={props.to} onClick={props.onClick}>
 					<Grow in style={{ transformOrigin: '0 0 0' }}
 							{...{timeout : timeout}} >
@@ -84,7 +84,7 @@ const Bubble = (props: BubbleProps) => {
 								
 							
 							{/* 	{props.children} */}
-								<BubbleCaption sx={{color:"secondary.dark", minHeight:"38px", fontWeight:"700", textTransform: "uppercase", margin:"auto", width:"85%"}}>
+								<BubbleCaption sx={{color:"secondary.dark", minHeight:"38px", fontWeight:"700", textTransform: "uppercase", margin:"auto", width:"85%", marginLeft: "-6px"}}>
 									{caption}
 								</BubbleCaption>					
 							</BubbleContent>
@@ -95,7 +95,7 @@ const Bubble = (props: BubbleProps) => {
 	)
 }
 
-const BubbleWrapper2 = styled('div')<BubbleWrapperProps>(({ theme, bubbleWrapperProps }) => ({
+const BubbleDecoration = styled('div')<BubbleWrapperProps>(({ theme, bubbleWrapperProps }) => ({
 	width: "100%",
 	height: "100%",
 	borderBottomRightRadius: bubbleWrapperProps.borderBottomRightRadius,
@@ -143,7 +143,7 @@ const BubbleContent = styled('div')
 			left: "50%",
 			transform: "translate(-50%, -50%)",
 			textAlign: "center",
-			width: "150px"
+			width: "150px",
 		}
 	))
 
@@ -151,7 +151,7 @@ const BubbleCaption = styled(Typography)
 (( {theme} ) => (
 	{
 		color: theme.palette.primary.main,
-		fontWeight: "300",
+		fontWeight: "300"
 	}
 ))
 
@@ -160,7 +160,8 @@ const BubbleImage = styled("img", {shouldForwardProp: (prop) => prop!=='width' &
 		if (width) return width
 		else return (
 			{
-				width: (size==="xl") ? "140px" : (size==="lg") ? "100px" : "100%"
+				width: (size==="xl") ? "140px" : (size==="lg") ? "100px" : "100%",
+				marginLeft: "-18px"
 			}
 		)	
 	})

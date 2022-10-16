@@ -58,7 +58,7 @@ const useRegistrationData = (regId: string|null, regNeeded = true) : [Registrati
 		(async () => {
 			if (regId && String(regId) !== String(JSON.parse(window.localStorage.getItem("iok_registration_data") as string)?.id)) {
 				window.localStorage.removeItem("iok_registration_data")
-				const res = await fetch("https://wy8qg2hpoh.execute-api.eu-west-1.amazonaws.com/default/iokRegistrationData?id=" + regId)
+				const res = await fetch("https://wy8qg2hpoh.execute-api.eu-west-1.amazonaws.com/default/iokRegistrationData?id=" + regId + "&eventId=edunext")
 				const data = await res.json()
 				if (data.id) {
 					setRegistrationData(data)
