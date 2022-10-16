@@ -15,7 +15,7 @@ export const NoRegistration = () => {
 	}
 
 	return <Box sx={{height: '100%', overflowY: 'auto', p: {xs: 2, md: 6}}}>
-		<Paper elevation={10} sx={{  margin: 'auto', bgcolor: '#15485B', p: 4, color: '#fff', borderRadius: '8px', textAlign: 'center', width: '600px', maxWidth: '100%' }}>
+		<Paper elevation={10} sx={{  margin: 'auto', bgcolor: 'secondary.dark', p: 4, color: '#fff', borderRadius: '8px', textAlign: 'center', width: '600px', maxWidth: '100%' }}>
 			{error && <Zoom in><Alert severity="error" sx={{ mb: 4 , textAlign: 'left', pr: 3 }} >
 				<AlertTitle sx={{color: '#F16B68', pt: '3px', fontWeight: 700, textAlign: 'left'}}>Érvénytelen kód</AlertTitle>
 				A link, amire kattintottál, vagy az általad megadott kód érvénytelen.

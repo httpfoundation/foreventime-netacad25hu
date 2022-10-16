@@ -8,6 +8,7 @@ import { LanguageSelect, PageTitle } from "../../components"
 import { useLiveStaticElements, useStage, useStages, useStreams } from "../../Store"
 import { Box } from "@mui/system"
 import ItmpImg from "../../assets/img/itmp-1.png"
+import educationNextImage from "../../assets/img/edunext_stage_image.png"
 import { styled } from '@mui/material/styles'
 import { PageHeaderTitle } from "../../components/PageContainer"
 import {ArrowBackIosNew as ArrowLeftIcon, ArrowForwardIos as ArrowRightIcon } from '@mui/icons-material'
@@ -22,7 +23,7 @@ const NoStream = () => {
 	return <Box sx={{width: '100%', height: '100%', bgcolor: "secondary.main", color: '#fff', py: 4, display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
 		<Zoom in>
 			<Box sx={{textAlign: 'center'}}>
-				<img src={ItmpImg} alt="" style={{width: '400px', maxWidth: 'min(calc(50vw * 9 / 16), 50vh)'}}/>
+				<img src={educationNextImage} alt="" style={{width: '400px', maxWidth: 'min(calc(50vw * 9 / 16), 50vh)'}}/>
 				<Typography sx={{textAlign: 'center', fontSize: {xs: '26px', lg:'40px'}, fontWeight: 700, mt: 2, color: '#fff'}}><StructuredText data={text} /></Typography>
 			</Box>
 		</Zoom>
@@ -59,7 +60,7 @@ const StagePage = () => {
 
 	useEffect(() => {
 		// TODO: Keep language preference
-		//if (!stage?.streams?.find(stream => stream.id === selectedStreamId)) setSelectedStreamId(stage?.streams?.length ? stage?.streams[0].id : null)
+		if (!stage?.streams?.find(stream => stream.id === selectedStreamId)) setSelectedStreamId(stage?.streams?.length ? stage?.streams[0].id : null)
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [stage])
 
@@ -91,7 +92,7 @@ const StagePage = () => {
 						{fab.icon}
 					</Fab>
 				</Tooltip>)}
-				<Box sx={{bgcolor: "#ace8ea", mb: '-8px'}}>
+				<Box sx={{bgcolor: "secondary.light", mb: '-8px'}}>
 					<PageTitle>{stage?.pageTitle}</PageTitle>
 				</Box>
 				<Grid container spacing={0} id="stage" sx={{height: '100%', overflowY: {xs: 'auto', lg:'hidden'}, maxHeight: '100%'}}>

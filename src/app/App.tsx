@@ -29,6 +29,7 @@ const App = () => {
 
 const RegistrationLoadSpinner = (props: {children: React.ReactNode}) => {
 	const [registration, loading] = useRegistration()
+	console.log("registration", registration)
 
 	if (loading) return <Box sx={{position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)'}}><CircularProgress color="secondary" size={60} /></Box>
 	if (!registration) return <NoRegistration />

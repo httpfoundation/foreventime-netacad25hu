@@ -74,6 +74,7 @@ const Bubble = (props: BubbleProps) => {
 	return (
 		<Tooltip title={title ?? ""} placement={tooltipPlacement ?? "top"} arrow  >
 			<BubbleWrapper bubbleWrapperProps={bubbleWrapperProps} onMouseEnter = {() => {if (hoverImg) setImage(hoverImg)}} onMouseLeave={() => {if (hoverImg) setImage(img)}}>
+				<BubbleWrapper2 bubbleWrapperProps={bubbleWrapperProps}></BubbleWrapper2>
 				<LinkOrOnClick external={external} to={props.to} onClick={props.onClick}>
 					<Grow in style={{ transformOrigin: '0 0 0' }}
 							{...{timeout : timeout}} >
@@ -83,7 +84,7 @@ const Bubble = (props: BubbleProps) => {
 								
 							
 							{/* 	{props.children} */}
-								<BubbleCaption sx={{color:"primary.contrastText", minHeight:"38px", fontWeight:"500", margin:"auto", width:"85%"}}>
+								<BubbleCaption sx={{color:"secondary.dark", minHeight:"38px", fontWeight:"700", textTransform: "uppercase", margin:"auto", width:"85%"}}>
 									{caption}
 								</BubbleCaption>					
 							</BubbleContent>
@@ -94,6 +95,21 @@ const Bubble = (props: BubbleProps) => {
 	)
 }
 
+const BubbleWrapper2 = styled('div')<BubbleWrapperProps>(({ theme, bubbleWrapperProps }) => ({
+	width: "100%",
+	height: "100%",
+	borderBottomRightRadius: bubbleWrapperProps.borderBottomRightRadius,
+	borderBottomLeftRadius: bubbleWrapperProps.borderBottomLeftRadius,
+	borderTopRightRadius: bubbleWrapperProps.borderTopRightRadius,
+	borderTopLeftRadius: bubbleWrapperProps.borderTopLeftRadius,
+	borderStyle: "solid",
+	borderWidth: "1px",
+	overflow: "hidden",
+	position: "absolute",
+	transition: "all 0.3s ease-in-out",
+	top: "-12px",
+	left: "-12px"
+}))
 
 const BubbleWrapper = styled("div", 
 			{
@@ -107,7 +123,7 @@ const BubbleWrapper = styled("div",
 			display: "inlineBlock",
 			position: "relative",
 			aspectRatio: "1",
-			backgroundColor: (bubbleWrapperProps.light) ? theme.palette.info.main :theme.palette.secondary.dark,
+			backgroundColor: (bubbleWrapperProps.light) ? theme.palette.info.main :theme.palette.info.dark,
 			transition: "transform 0.2s, box-shadow 0.2s ",
 			...bubbleWrapperProps,
 			"&:hover": {

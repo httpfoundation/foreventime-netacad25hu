@@ -6,6 +6,7 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useStages, usePageTitle, useRegistration } from "../Store"
 import iokLogo from "../assets/images/iok2022_logo_w_httpw_sm.png"
+import educationnextLogo from "../assets/images/educationnextlogo.png"
 import {styled} from "@mui/system"
 
 type MenuItem = {
@@ -21,7 +22,7 @@ type DividerMenuItem = {
 }
 
 const Header = () => {
-
+	const isInfoButtonVisible = false
 	const [drawerOpen, setDrawerOpen] = useState(false)
 	const [registration, loading] = useRegistration()
 	const stages = useStages()
@@ -44,7 +45,7 @@ const Header = () => {
 
 	const pageTitle = usePageTitle()
 	useEffect(() => {
-		document.title = pageTitle ? "IOK 2022 | " + pageTitle : "IOK 2022"
+		document.title = pageTitle ? "EDUCATION:NEXT 2022 | " + pageTitle : "EDUCATION:NEXT 2022"
 	}, [pageTitle])
 	
 	
@@ -85,7 +86,7 @@ const Header = () => {
 		}}>
 			<Toolbar>
 				<Box sx={{flex: '0 0 auto', transform: 'translateY(2px)'}}>
-					<Link to="/"><Logo src={iokLogo} />	</Link>
+					<Link to="/"><Logo src={educationnextLogo} />	</Link>
 				</Box>
 				<Typography variant="h6" noWrap sx={{flex: 1, transform: 'translateY(2px)'}} align="center">
 					{/* {pageTitle} */}
@@ -107,7 +108,8 @@ const Header = () => {
 				</Tooltip>	
 			</Zoom>
 		)}
-		{location.pathname !== "/infopult" && (
+
+		{(location.pathname !== "/infopult") && isInfoButtonVisible &&  (
 			<Zoom in>
 				<Tooltip title="Tovább az információs pulthoz" placement="bottom" arrow>
 					<Fab color="secondary" sx={{position: 'absolute', right: location.pathname !== "/" ? 100 : 30, top: 80, zIndex: 800, display: {lg: 'flex', xs: 'none'}}} component={Link} to="/infopult" >
@@ -117,6 +119,7 @@ const Header = () => {
 			</Zoom>
 			)
 		}
+
 		{ (location.pathname !== "/" && !location.pathname.includes("/szekcio")) && (
 			<Zoom in>
 				<Tooltip title="Vissza" placement="bottom" arrow>
@@ -133,7 +136,7 @@ const Header = () => {
 const Logo = styled('img')`
 	padding-top:5px;
 	height: 38px;
-	width: 207px
+	/*width: 207px;*/
 	
 
 `

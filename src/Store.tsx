@@ -27,7 +27,7 @@ export const Store = createContext<IStore>({
 	talks: [],
 	streams: [],
 	breakoutRooms: [],
-	pageTitle: "IOK 2022",
+	pageTitle: "Education:Next 2022",
 	setPageTitle: (t: string) => {},
 	registration: null,
 	registrationLoading: true,
@@ -76,8 +76,8 @@ const useRegistrationData = (regId: string|null, regNeeded = true) : [Registrati
 					"id": null,
 					"name": "Résztvevő",
 					"webex_access_token": null,
-					//"dato_token": "53ed3bb4aec52b9c6626a233309ada", // LiveVisitor token, EducationNext2022
-					"dato_token": "86562f6d25113edf16c2608cedf976", // LiveVisitor token, IOK2022	
+					"dato_token": "53ed3bb4aec52b9c6626a233309ada", // LiveVisitor token, EducationNext2022
+					//"dato_token": "86562f6d25113edf16c2608cedf976", // LiveVisitor token, IOK2022	
 					"stage": null,
 					"onsite": false
 				}
@@ -311,7 +311,7 @@ export const StoreProvider = (props: { children: React.ReactElement }) => {
 	const [pageTitle, setPageTitle] = useState("IOK 2022")
 
 	const regId = (new URLSearchParams(window.location.search)).get('q') || null
-	const [registration, registrationLoading, registrationError] = useRegistrationData(regId, false)
+	const [registration, registrationLoading, registrationError] = useRegistrationData(regId, true)
 
 	const store:IStore = useMemo(() => ({
 		stages,

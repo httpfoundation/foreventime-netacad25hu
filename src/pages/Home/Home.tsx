@@ -15,7 +15,7 @@ const Home = () => {
    return (
 
             <PageContainer container>
-                <PageTitle>IOK 2022 Aula</PageTitle>
+                <PageTitle>EDUCATION:NEXT Aula</PageTitle>
                 <Dashboard items={homeDashboardItems} />
             </PageContainer>
         

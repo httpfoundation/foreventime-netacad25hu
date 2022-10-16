@@ -11,7 +11,7 @@ const PageContainer = (props: { children: React.ReactNode, container?: boolean, 
 	return (
 		<>
 			<PageHeaderTitle title={props.title} />
-			<Parent sx={{px: {md: 4, xs: 2}, pt: 2, pb: {xs: 4, md: 2}, backgroundColor: props.dark ? "#14475C" : "secondary.light", minHeight: '100%', position: 'relative'}}>
+			<Parent sx={{px: {md: 4, xs: 2}, pt: 2, pb: {xs: 4, md: 2}, backgroundColor: props.dark ? "secondary.dark" : "secondary.light", minHeight: '100%', position: 'relative'}}>
 				{props.children}
 			</Parent>
 		</>
