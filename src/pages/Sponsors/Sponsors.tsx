@@ -8,15 +8,18 @@ import pannonLogo from "../../assets/images/pannon-mik2.png"
 import eltetokLogo from "../../assets/images/elte-tok2.png"
 import netAcadLogo from "../../assets/images/netacad2.png"
 import { styled } from "@mui/system"
+import { useSponsorCategories } from "../../Store"
 
 const Sponsors = () => {
+	const sponsorCategories = useSponsorCategories()
+	
 	return (
 		<PageContainer>
 				<Container>
-					<PageTitle>Támogatóink</PageTitle>
-					<Typography variant="h2" sx={{textAlign:"center", mb:4, mt:4,}}>A rendezvény fő támogatói</Typography>
+					<PageTitle>Támogatók és szervezők</PageTitle>
 					
-					<Grid
+					
+{/* 					<Grid
 						container
 						direction={"row"}
 						spacing={5}
@@ -57,7 +60,26 @@ const Sponsors = () => {
 
 					</Grid>					
 					
-					
+					 */}
+					{sponsorCategories && sponsorCategories.map((category, index) => (
+						<>
+							<Typography variant="h2" sx={{textAlign:"center", mb:4, mt:4,}}>{category.name}</Typography>
+							<ul className="logo-gallery" style={{
+								  display: "flex",
+								  flexWrap: "wrap",
+								  justifyContent: "center",
+								  gap: "10px",
+								  padding: 0,
+								  listStyle: "none",
+							}}>
+								{category.sponsor && category.sponsor.map((sponsor, index) => (
+									<li style={{flexBasis: "250px"}}>
+										<Sponsor key={index} image={sponsor.logo.url} link={sponsor.url} name={sponsor.name} />
+									</li>
+								))}
+							</ul>
+						</>
+					))}
 					
 					
 				</Container>
@@ -69,7 +91,13 @@ const Sponsor = (props : {link: string, image: string, name?: string}) => {
 	return (
 		<div className="sponsor">
 			<a href={props.link} target="_blank" rel="noopener noreferrer"  >
-					<img src={props.image} alt={props.name} {...props}/>
+					<img src={props.image} alt={props.name} {...props} style={{
+						  objectFit: "cover",
+						  width: "100%",
+						  height: "100%",
+						  verticalAlign: "middle",
+						  borderRadius: "5px"
+					}}/>
 			</a>
 		</div>
 	)

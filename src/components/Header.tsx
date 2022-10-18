@@ -33,11 +33,11 @@ const Header = () => {
 		{label: 'Program', to: '/eloadasok', icon: <EventNoteIcon />},
 		{label: 'Előadók', to: '/eloadok', icon: <PeopleIcon />},
 		{divider: true},
-		{label: 'Szekciók', divider: true, icon: <LiveTvIcon sx={{mr: 1, transform: 'translateY(5px)', color: 'rgba(0, 0, 0, 0.4)'}} />},
-		...stages.map(stage => ({label: stage.name, to: `/szekcio/${stage.slug}`})),
-		{divider: true},
-		{label: 'IOK Cafe', to: '/iok-cafe', icon: <CoffeeIcon />},
-		{label: 'Támogatók', to: '/tamogatok', icon: <StarIcon />},
+	/* 	{label: 'Szekciók', divider: true, icon: <LiveTvIcon sx={{mr: 1, transform: 'translateY(5px)', color: 'rgba(0, 0, 0, 0.4)'}} />},
+		...stages.map(stage => ({label: stage.name, to: `/szekcio/${stage.slug}`})), */
+		/* {divider: true}, */
+/* 		{label: 'IOK Cafe', to: '/iok-cafe', icon: <CoffeeIcon />},
+ */		{label: 'Támogatók', to: '/tamogatok', icon: <StarIcon />},
 		{label: 'Értékelő űrlap', to: '/ertekeles', icon: <StarIcon />},
 		{divider: true},
 		{label: 'Kijelentkezés', to: '/kijelentkezes', icon: <LogoutIcon />},
@@ -123,7 +123,7 @@ const Header = () => {
 		{ (location.pathname !== "/" && !location.pathname.includes("/szekcio")) && (
 			<Zoom in>
 				<Tooltip title="Vissza" placement="bottom" arrow>
-					<Fab color="secondary" sx={{position: 'absolute', right: location.pathname !== "/infopult" ? 170 : 100, top: 80, zIndex: 800, display: {lg: 'flex', xs: 'none'}}} onClick={()=> navigate(-1)} >
+					<Fab color="secondary" sx={{position: 'absolute', right: location.pathname !== "/infopult" ? 100 : 100, top: 80, zIndex: 800, display: {lg: 'flex', xs: 'none'}}} onClick={()=> navigate(-1)} >
 						<ArrowBackIcon />
 					</Fab>
 				</Tooltip>

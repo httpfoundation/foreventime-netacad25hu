@@ -69,9 +69,9 @@ const StagePage = () => {
 	
 	const [selectedTab, setSelectedTab] = useState<number>(0)
 
-	const fabs = [
-		{title: `${stage.nextStage?.name || ""}`, to: `/szekcio/${stage?.nextStage?.slug}`, icon: <ArrowRightIcon sx={{transform: 'translateX(2px)'}} />, disabled: !stage?.nextStage},
-		{title: `${stage.prevStage?.name || ""}`, to: `/szekcio/${stage?.prevStage?.slug}`, icon: <ArrowLeftIcon sx={{transform: 'translateX(-2px)'}} />, disabled: !stage?.prevStage},
+	const fabs: any[] = [
+		/* {title: `${stage.nextStage?.name || ""}`, to: `/szekcio/${stage?.nextStage?.slug}`, icon: <ArrowRightIcon sx={{transform: 'translateX(2px)'}} />, disabled: !stage?.nextStage},
+		{title: `${stage.prevStage?.name || ""}`, to: `/szekcio/${stage?.prevStage?.slug}`, icon: <ArrowLeftIcon sx={{transform: 'translateX(-2px)'}} />, disabled: !stage?.prevStage}, */
 	]
 
 	const chatDisabled = !selectedStream || !selectedStream?.youtubeVideoId || !selectedStream.live

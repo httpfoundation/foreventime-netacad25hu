@@ -89,6 +89,22 @@ export type DatoStaff = {
 	}
 }
 
+export type Sponsor = {
+	id: number
+	name: string
+	url: string
+	logo: {
+		url: string
+	}
+}
+
+export type SponsorCategory = {	
+	id: number
+	name: string
+	sponsor: Sponsor[]
+}
+
+
 
 export type DatoComplex = {
 	allStages: DatoStage[]
@@ -99,6 +115,7 @@ export type DatoComplex = {
 	allMessages: DatoMessage[]
 	allStaffs: DatoStaff[]
 	allDashboardElements: DashboardElement[]
+	allSponsorCategories: SponsorCategory[]
 }
 
 export type DatoMessage = {

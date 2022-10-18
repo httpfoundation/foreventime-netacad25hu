@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react"
 import { useSearchParams } from "react-router-dom"
 import Dashboard from "./components/Dashboard"
-import { DatoStage, DatoSpeaker, DatoTalk, DatoComplex, DatoBreakoutRoom, DatoLiveStaticElement, DatoMessage, DatoStaff, DatoStream, DashboardElement } from "./types"
+import { DatoStage, DatoSpeaker, DatoTalk, DatoComplex, DatoBreakoutRoom, DatoLiveStaticElement, DatoMessage, DatoStaff, DatoStream, DashboardElement, SponsorCategory } from "./types"
 import useQuery from "./useQuery"
 
 export interface IStore {
@@ -19,6 +19,7 @@ export interface IStore {
 	messages: DatoMessage[]
 	staff: DatoStaff[]
 	dashboardElements: DashboardElement[]
+	sponsorCategories: SponsorCategory[]
 }
 
 export const Store = createContext<IStore>({
@@ -35,7 +36,8 @@ export const Store = createContext<IStore>({
 	liveStaticElements: {},
 	messages: [],
 	staff: [],
-	dashboardElements: []
+	dashboardElements: [],
+	sponsorCategories: []
 })
 
 type RegistrationData = {
@@ -152,6 +154,16 @@ export const StoreProvider = (props: { children: React.ReactElement }) => {
 				title
 				roomId
 			}
+			allSponsorCategories(, first: 100 ) {
+                name
+                sponsor {
+                    name
+                    url
+                    logo {
+                    url
+                    }
+                }
+            }
 			liveStaticElement {
 				welcome {
 				  value
@@ -279,7 +291,8 @@ export const StoreProvider = (props: { children: React.ReactElement }) => {
 		allMessages: [], 
 		allStaffs: [], 
 		allStreams: [], 
-		allDashboardElements: []
+		allDashboardElements: [],
+		allSponsorCategories: []
 	})
 	console.log("data", data)
 	const {
@@ -290,7 +303,8 @@ export const StoreProvider = (props: { children: React.ReactElement }) => {
 		allSpeakers: presenters, 
 		allMessages: messages, 
 		allStaffs: staff,
-		allDashboardElements: dashboardElements
+		allDashboardElements: dashboardElements,
+		allSponsorCategories: sponsorCategories
 	} 	= data
 
 	const talks = useMemo(() => {
@@ -327,7 +341,8 @@ export const StoreProvider = (props: { children: React.ReactElement }) => {
 		liveStaticElements,
 		messages,
 		staff,
-		dashboardElements
+		dashboardElements,
+		sponsorCategories
 	}), [
 			stages, 
 			presenters, 
@@ -342,7 +357,8 @@ export const StoreProvider = (props: { children: React.ReactElement }) => {
 			messages, 
 			staff,
 			streams,
-			dashboardElements
+			dashboardElements,
+			sponsorCategories
 		]
 	)
 
@@ -375,6 +391,7 @@ export const usePresenters = () => {
 	const store = useStore()
 	return store.presenters
 }
+
 
 export const useStages = () => {
 	const store = useStore()
@@ -411,6 +428,10 @@ export const useStaff = (group?: string) => {
 	return store.staff
 }
 
+export const useSponsorCategories = () => {
+	const store = useStore()
+	return store.sponsorCategories
+}
 
 export const useTalk = (talkId?: string|number) => {
 	const store = useStore()

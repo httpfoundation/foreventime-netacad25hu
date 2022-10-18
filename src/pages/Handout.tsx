@@ -12,7 +12,7 @@ const Handout = () => {
 	return (
  		<PageContainer container>
 			 <Box sx={{}}>
-				<PageTitle>IOK VKK használati útmutató</PageTitle>
+				<PageTitle>Virtuális konferenciaközpont használati útmutató</PageTitle>
 				<StructuredText data={handoutText}></StructuredText> 
 			 </Box>
 		</PageContainer> 
