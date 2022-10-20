@@ -6,7 +6,7 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useStages, usePageTitle, useRegistration } from "../Store"
 import iokLogo from "../assets/images/iok2022_logo_w_httpw_sm.png"
-import educationnextLogo from "../assets/images/educationnextlogo.png"
+import educationnextLogo from "../assets/images/educationnextlogo_inverz.png"
 import {styled} from "@mui/system"
 
 type MenuItem = {
