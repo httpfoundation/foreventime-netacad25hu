@@ -7,7 +7,9 @@ import { Box } from "@mui/system"
 import { Star as StarFilled, StarOutline as Star } from "@mui/icons-material"
 import { useEffect, useMemo, useState } from "react"
 import { useDatoClient } from "../useQuery"
-import recepcio from "../assets/images/recepcio.png";
+//import recepcio from "../assets/img/recepcio.png";
+import edunextImg from "../assets/img/edunext_stage_image.png"
+
 
 
 const TalkRate = (props: {id: number, rating: number|null, setRating: (r: number|null) => void}) => {
@@ -46,6 +48,7 @@ const Rating = () => {
 
 	const [ratings, setRatings] = useState<{[id: number|string]: number|null}>({})
 	const [comment, setComment] = useState<string>("")
+	const [recommendedTopic, setRecommendedTopic] = useState<string>("")
 
 	const client = useDatoClient()
 	const [registration] = useRegistration()
@@ -78,6 +81,7 @@ const Rating = () => {
 					console.log("Loaded ratings", JSON.parse(res[0].ratings))
 					setRatings(JSON.parse(res[0].ratings))
 					setComment(res[0].comment)
+					setRecommendedTopic(res[0].recommendedTopic)
 				}
 			})
 		}
@@ -89,13 +93,14 @@ const Rating = () => {
 		const data = {
 			registration: String(registration?.id) ?? null,
 			ratings: JSON.stringify(Object.fromEntries(Object.entries(_ratings).filter(([_, v]) => v !== null))),
-			comment
+			comment,
+			recommendedTopic
 		}
 		
 		if (submit) setLoading(true)
 		try {
 			await client?.items.create({
-				itemType: '1958391',
+				itemType: '94468', //1958391
 				...data
 			})
 			if (submit) {
@@ -115,12 +120,14 @@ const Rating = () => {
 
 	const otherQuestions: Array<{id: string, question: string, type: "all" | "onsite" | "offsite"}> = [
 		{id: "elegedett-szervezes", question: "Mennyire vagy elégedett a szervezéssel, tájékoztatással?", type: "all"},
-		{id: "elegedett-menu", question: "Mennyire vagy elégedett a menüvel?", type: "onsite"},
-		{id: "elegedett-app", question: "Mennyire vagy elégedett az IOK VKK platform által nyújtott szolgáltatásokkal?", type: "all"},
-		{id: "jovore", question: "Mennyire szívesen vennél részt jövőre is a konferencián?", type: "all"}
+		{id: "streaming-platform", question: "Mennyire vagy elégedett a streaming platformmal?", type: "all"},
+		{id: "jovore", question: "Mennyire szívesen vennél részt jövőre is a konferencián?", type: "all"},
+		{id: "ajanlas", question: "Mennyire ajánlanád ismerőseidnek, kollégáidnak a konferenciát?", type: "all"},
 	]
 	const {rating: ratingText } = useLiveStaticElements()
-
+/* 	{id: "elegedett-menu", question: "Mennyire vagy elégedett a menüvel?", type: "onsite"},
+	{id: "elegedett-app", question: "Mennyire vagy elégedett az IOK VKK platform által nyújtott szolgáltatásokkal?", type: "all"},
+ */	
 	return (
  		<PageContainer container>
 
@@ -152,7 +159,7 @@ const Rating = () => {
 						<Typography variant="h6" fontWeight={700} align="center" sx={{mt: 0.5}}>
 							Köszönjük, hogy értékelted a konferenciát!
 						</Typography>
-						<img src={recepcio} style={{width: '300px', margin: '30px 0'}} />
+						<img src={edunextImg} style={{width: '300px', margin: '30px 0'}} />
 					</Paper>	
 				</Box>}
 				{ !stages.length ? null : (
@@ -180,8 +187,10 @@ const Rating = () => {
 								setRatings(_ratings)
 								sendRating(false, _ratings)
 							}} key={index} id={question.id} /> : null)}
-						<Typography variant="h6" fontSize={'0.8rem'} align="left" fontWeight={600}>Megjegyzések</Typography>
-						<TextField value={comment} onChange={e=>setComment(e.target.value)} multiline fullWidth minRows={8} color="secondary" placeholder="Ide írhatja javaslatait, észrevételeit, egyéb megjegyzéseit"/>
+						<Typography variant="h6" fontSize={'0.8rem'} align="left" fontWeight={600}>Milyen témáról hallanál szívesen a következő konferencián?</Typography>
+						<TextField value={recommendedTopic} onChange={e=>setRecommendedTopic(e.target.value)} multiline fullWidth minRows={8} color="secondary" placeholder="Ide írhatod témajavaslataidat"/>
+						<Typography variant="h6" fontSize={'0.8rem'} align="left" fontWeight={600} sx={{mt:2}}>Megjegyzések</Typography>
+						<TextField value={comment} onChange={e=>setComment(e.target.value)} multiline fullWidth minRows={8} color="secondary" placeholder="Ide írhatod egyéb javaslataidat, észrevételeidet és megjegyzéseidet"/>
 					</Paper>
 
 					<Button size="large" variant="contained" fullWidth color="secondary" onClick={() => sendRating()}>
