@@ -38,7 +38,7 @@ export const Questions = (props: { schedule?: DatoTalk[]; stageId?: number; }) =
 		setLoading(true);
 		try {
 			await client?.items.create({
-				itemType: '1917974',
+				itemType: '94465', //'1917974',
 				...data
 			});
 			setContent('');

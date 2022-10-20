@@ -120,7 +120,8 @@ const Rating = () => {
 
 	const otherQuestions: Array<{id: string, question: string, type: "all" | "onsite" | "offsite"}> = [
 		{id: "elegedett-szervezes", question: "Mennyire vagy elégedett a szervezéssel, tájékoztatással?", type: "all"},
-		{id: "streaming-platform", question: "Mennyire vagy elégedett a streaming platformmal?", type: "all"},
+		{id: "elegedett-helyszin", question: "Mennyire vagy elégedett a helyszínnel?", type: "all"},
+		{id: "elegedett-streaming-platform", question: "Mennyire vagy elégedett a streaming platformmal?", type: "all"},
 		{id: "jovore", question: "Mennyire szívesen vennél részt jövőre is a konferencián?", type: "all"},
 		{id: "ajanlas", question: "Mennyire ajánlanád ismerőseidnek, kollégáidnak a konferenciát?", type: "all"},
 	]
@@ -128,6 +129,9 @@ const Rating = () => {
 /* 	{id: "elegedett-menu", question: "Mennyire vagy elégedett a menüvel?", type: "onsite"},
 	{id: "elegedett-app", question: "Mennyire vagy elégedett az IOK VKK platform által nyújtott szolgáltatásokkal?", type: "all"},
  */	
+	//const stage0 = shownStages[0]
+	//console.log("stage0.schedule?.slice(1)", stage0.schedule?.slice(1))
+	
 	return (
  		<PageContainer container>
 
@@ -169,7 +173,7 @@ const Rating = () => {
 							return (<Paper sx={{px: 2, mb: 2, pb: 1, pt: 2}} key={index}>
 								<Typography variant="h6" fontWeight={700} align="center" sx={{mt: 0.5}}>{stage.pageTitle}</Typography>
 								<Divider sx={{mt: 2, mb: 4}} />
-								{stage.schedule?.map((talk, index) => <TalkRate rating={ratings[talk.id]} setRating={r => {
+								{stage.schedule?.slice(2).map((talk, index) => <TalkRate rating={ratings[talk.id]} setRating={r => {
 									const _ratings = {...ratings, [talk.id]: r}
 									//window.localStorage.setItem("ratings", JSON.stringify(_ratings))
 									setRatings(_ratings)
@@ -189,7 +193,7 @@ const Rating = () => {
 							}} key={index} id={question.id} /> : null)}
 						<Typography variant="h6" fontSize={'0.8rem'} align="left" fontWeight={600}>Milyen témáról hallanál szívesen a következő konferencián?</Typography>
 						<TextField value={recommendedTopic} onChange={e=>setRecommendedTopic(e.target.value)} multiline fullWidth minRows={8} color="secondary" placeholder="Ide írhatod témajavaslataidat"/>
-						<Typography variant="h6" fontSize={'0.8rem'} align="left" fontWeight={600} sx={{mt:2}}>Megjegyzések</Typography>
+						<Typography variant="h6" fontSize={'0.8rem'} align="left" fontWeight={600} sx={{mt:2}}>Megjegyzés, észrevétel, javaslat a konferenciával kapcsolatban:</Typography>
 						<TextField value={comment} onChange={e=>setComment(e.target.value)} multiline fullWidth minRows={8} color="secondary" placeholder="Ide írhatod egyéb javaslataidat, észrevételeidet és megjegyzéseidet"/>
 					</Paper>
 
