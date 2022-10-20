@@ -42,7 +42,6 @@ const Welcome = () => {
     const {welcome} = useLiveStaticElements()
 	const [registration, loading] = useRegistration()
 	const chairman = usePresident() 
-	console.log("president", chairman)
     window.localStorage.setItem("welcome", "true") 
 	return (
  		<PageContainer container>

@@ -14,8 +14,8 @@ export const Attendance = () => {
 	const [lastPath, setLastPath] = useState<string>(location.pathname)
 
 	const sendAttendance = async () => {
-		console.log("Skipping sending attendance")
-		return
+		//console.log("Skipping sending attendance")
+		//return
 		const attendanceId = window.localStorage.getItem('iok_attendance_id')
 		if (!registration?.id || !attendanceId)
 			return
@@ -35,13 +35,13 @@ export const Attendance = () => {
 	}
 
 	const createAttendance = async () => {
-		console.log("Skipping creating attendance")
-		return null
+		//console.log("Skipping creating attendance")
+		//return null
 		if (!registration?.id)
 			return
 		try {
 			const res = await client?.items.create({
-				itemType: '1961614',
+				itemType: '94469', //1961614
 				registration: String(registration?.id) ?? null,
 				attendances: JSON.stringify([])
 			})

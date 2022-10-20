@@ -294,7 +294,6 @@ export const StoreProvider = (props: { children: React.ReactElement }) => {
 		allDashboardElements: [],
 		allSponsorCategories: []
 	})
-	console.log("data", data)
 	const {
 		allStages : stages, 
 		allStreams: streams, 
@@ -406,7 +405,6 @@ export const useLiveStaticElements = () => {
 export const usePresident = () => {
 	const store = useStore()
 	const staff = store.staff
-	console.log("staff", staff)
 	const presidentStaffId = store.liveStaticElements.presidentStaffId
 	return staff.find((staffMember) => staffMember.id == presidentStaffId)
 }

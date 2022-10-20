@@ -55,7 +55,7 @@ const Message = (props: {message?: DatoMessage, notification?: boolean, onHide?:
 				<CardHeader
 				avatar={<Avatar src={staff.image?.url}></Avatar>}
 				title={staff.name}
-				subheader="HTTP Alapítvány"
+				subheader="EDUCATION:NEXT"
 				titleTypographyProps={{fontWeight: 600}}
 				sx={{pb: 2, px: 0, pt: 1}}
 				/>
@@ -124,7 +124,7 @@ export const MessageNotifications = () => {
 		{unreadMessages.slice(0,2).map((message, index) => <Message key={message.id} message={message} notification onHide={(id) => {
 			if (!readMessages.includes(id)) {
 				window.localStorage.setItem('readMessages', JSON.stringify([...readMessages, id]))
-				console.log("Read", id)
+				//console.log("Read", id)
 				setReadMessages([...readMessages, id])
 			}
 		}} />)}
