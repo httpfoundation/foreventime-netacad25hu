@@ -44,7 +44,6 @@ const VideoContainer = styled('div')(({theme}) => `
 	}
 	overflow-y: hidden;
 	width: 100%;
-
 `)
 
 const StagePage = () => {
@@ -57,10 +56,14 @@ const StagePage = () => {
 	const location = useLocation()
 
 	const [selectedStreamId, setSelectedStreamId] = useState<number | null>((location.state as any)?.streamId || null)
-
+	
+	
+	
 	useEffect(() => {
-		// TODO: Keep language preference
-		if (!stage?.streams?.find(stream => stream.id === selectedStreamId)) setSelectedStreamId(stage?.streams?.length ? stage?.streams[0].id : null)
+			// TODO: Keep language preference
+		
+		//if (!stage?.streams?.find(stream => stream.id === selectedStreamId)) setSelectedStreamId(stage?.streams?.length ? stage?.streams[0].id : null)
+		
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [stage])
 

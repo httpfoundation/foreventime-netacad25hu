@@ -44,9 +44,11 @@ interface BubbleWrapperProps {
 
 const LinkOrOnClick = (props: {to?: string, onClick?: () => void, children: React.ReactElement, external?: boolean}) => {
 	const {to, onClick, external} = props
+	let external2 = false
+	if (to?.substring(0,4) === "http") external2 = true
 	const style = {display: 'block', width: '100%', height: '100%', cursor:'pointer'}
 	if (to) {
-		if (external) return <a target="_blank" rel="noreferrer noopener" href={to} style={style}>{props.children}</a>
+		if (external2) return <a target="_blank" rel="noreferrer noopener" href={to} style={style}>{props.children}</a>
 		else return <Link style={style} to={to}>{props.children}</Link>
 	}
 	if (onClick) {
@@ -56,12 +58,13 @@ const LinkOrOnClick = (props: {to?: string, onClick?: () => void, children: Reac
 }
 
 const Bubble = (props: BubbleProps) => {
-	const { size, corner, timeout, caption, title, tooltipPlacement, img, imgWidth, hoverImg, external } = props
+	const { size, corner, timeout, caption, title, tooltipPlacement, img, imgWidth, hoverImg, external, to } = props
 	console.log("img", img)
 	//"xl" is the default size
  	const width = (size === "xs") ? "350px" : (size === "lg") ? "200px" :  "450px"
 	const borderRadius = (size === "xs") ? "250px" : (size === "lg") ? "140px" : "350px" 
 	const [image, setImage] = useState(img)
+
 	
 	const bubbleWrapperProps = {
 		width,
@@ -75,7 +78,7 @@ const Bubble = (props: BubbleProps) => {
 		<Tooltip title={title ?? ""} placement={tooltipPlacement ?? "top"} arrow  >
 			<BubbleWrapper bubbleWrapperProps={bubbleWrapperProps} onMouseEnter = {() => {if (hoverImg) setImage(hoverImg)}} onMouseLeave={() => {if (hoverImg) setImage(img)}}>
 				<BubbleDecoration bubbleWrapperProps={bubbleWrapperProps}></BubbleDecoration>
-				<LinkOrOnClick external={external} to={props.to} onClick={props.onClick}>
+				<LinkOrOnClick external={external} to={to} onClick={props.onClick}>
 					<Grow in style={{ transformOrigin: '0 0 0' }}
 							{...{timeout : timeout}} >
 							<BubbleContent>
