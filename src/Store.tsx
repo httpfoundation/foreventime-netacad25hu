@@ -324,7 +324,7 @@ export const StoreProvider = (props: { children: React.ReactElement }) => {
 	const [pageTitle, setPageTitle] = useState("IOK 2022")
 
 	const regId = (new URLSearchParams(window.location.search)).get('q') || null
-	const [registration, registrationLoading, registrationError] = useRegistrationData(regId, true)
+	const [registration, registrationLoading, registrationError] = useRegistrationData(regId, false)
 
 	const store:IStore = useMemo(() => ({
 		stages,
