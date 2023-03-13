@@ -13,16 +13,7 @@ const ChairmanImage = styled('img')`
 	height: auto;
 	border-radius: 20px;
 `
-const chairman2 = 
-    {
-            name: "Sisák Zoltán",
-            title: "elnök",
-            image: {
-                url: "https://www.datocms-assets.com/63196/1644788994-sisak_zoltan3.png"
-            },
-            id: "107304877",
-            company: "HTTP Alapítvány",
-    }
+
 
 
 const Title = styled(Typography)<TypographyProps>(({theme}) => `
@@ -49,10 +40,12 @@ const Welcome = () => {
 			<Grid container spacing={4} sx={{mb: 4}}>
 				<Grid item xs={12} md={4}>
 					<ChairmanImage src={chairman?.image?.url} alt={chairman?.name} />
-					<Name >{chairman?.name}</Name>
-					<Title>{chairman?.title}, {chairman?.company}</Title>
+					<Box sx={{color:"primary.contrastText"}}>
+						<Name >{chairman?.name}</Name>
+						<Title>{chairman?.title}, {chairman?.company}</Title>
+					</Box>
 				</Grid>
-				<Grid item xs={12} md={8} sx={{display: "flex", flexDirection: "column", justifyContent: "flex-end", pb: 1}}>
+				<Grid item xs={12} md={8} sx={{display: "flex", flexDirection: "column", justifyContent: "flex-end", pb: 1, color:"primary.contrastText"}}>
                     <Name >Kedves {registration?.name}!</Name>
                     <StructuredText data={welcome}></StructuredText> 
 					<Box>
