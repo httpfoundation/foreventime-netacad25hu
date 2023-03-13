@@ -28,7 +28,7 @@ export const Store = createContext<IStore>({
 	talks: [],
 	streams: [],
 	breakoutRooms: [],
-	pageTitle: "Education:Next 2022",
+	pageTitle: "IOK 2023",
 	setPageTitle: (t: string) => {},
 	registration: null,
 	registrationLoading: true,
@@ -78,7 +78,7 @@ const useRegistrationData = (regId: string|null, regNeeded = true) : [Registrati
 					"id": null,
 					"name": "Résztvevő",
 					"webex_access_token": null,
-					"dato_token": "53ed3bb4aec52b9c6626a233309ada", // LiveVisitor token, EducationNext2022
+					"dato_token": "5b4d0c68817732d4ac571d61e85fd7", // LiveVisitor token, EducationNext2022
 					//"dato_token": "86562f6d25113edf16c2608cedf976", // LiveVisitor token, IOK2022	
 					"stage": null,
 					"onsite": false

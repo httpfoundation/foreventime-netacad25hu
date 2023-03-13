@@ -37,7 +37,7 @@ export const NoRegistration = () => {
 				Ha még nem regisztráltál, akkor kattints az alábbi "Regisztráció" gombra.
 			</Alert></Zoom> }
 			<Typography variant="h5" sx={{ fontWeight: 'bold', mb: 4 }}>
-				Az EDUCATION:NEXT konferencián való részvétel regisztrációhoz kötött!!
+				Az IOK 2023 konferencián való részvétel regisztrációhoz kötött!!
 			</Typography>
 			<img src={edunext} alt="" style={{ width: '200px', maxWidth: '70%' }} />
 			<Typography variant="body1" component="p" sx={{  my: 1, color: 'secondary.dark' }}>
@@ -49,7 +49,7 @@ export const NoRegistration = () => {
 				color="secondary"
 				sx={{ mt: 2 }} 
 				size="large" 
-				href="https://konferencia.educationnext.hu/">
+				href="https://iok2023.httpf.hu/">
 					Regisztráció
 			</Button>
 

@@ -1,6 +1,6 @@
 import { styled } from '@mui/system'
 
-const TimeDiv = styled('div')`
+/* const TimeDiv = styled('div')`
 	transition: all 0.2s ease-out;
 	font-size: 0.75rem;
 	font-weight: 700;
@@ -12,7 +12,21 @@ const TimeDiv = styled('div')`
 		transform: translateY(2.5px);
 		margin-right: 8px;
 	}
-`
+` */
+
+const TimeDiv = styled('div')( ({theme}) => `
+	transition: all 0.2s ease-out;
+	font-size: 0.75rem;
+	font-weight: 700;
+	color: ${theme.palette.grey[300]};
+	svg {
+		transition: all 0.2s ease-out;
+		fill:  ${theme.palette.grey[300]};
+		height: 15px;
+		transform: translateY(2.5px);
+		margin-right: 8px;
+	}
+`)
 
 const ScheduleTimeCaption = (props: {date?: Date}) => {
 	const {date} = props

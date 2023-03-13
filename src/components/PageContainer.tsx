@@ -2,7 +2,7 @@ import { Box as MuiBox, Container as MuiContainer } from '@mui/material'
 import { useEffect } from 'react'
 import { useSetPageTitle } from '../Store'
 
-const PageContainer = (props: { children: React.ReactNode, container?: boolean, dark?: boolean, title?: string }) => {
+const PageContainer = (props: { children: React.ReactNode, container?: boolean, light?: boolean, title?: string }) => {
 
 
 	
@@ -11,7 +11,7 @@ const PageContainer = (props: { children: React.ReactNode, container?: boolean, 
 	return (
 		<>
 			<PageHeaderTitle title={props.title} />
-			<Parent sx={{px: {md: 4, xs: 2}, pt: 2, pb: {xs: 4, md: 2}, backgroundColor: props.dark ? "secondary.dark" : "secondary.light", minHeight: '100%', position: 'relative'}}>
+			<Parent sx={{px: {md: 4, xs: 2}, pt: 2, pb: {xs: 4, md: 2}, backgroundColor: props.light ? "primary.light" : "primary.main", minHeight: '100%', position: 'relative'}}>
 				{props.children}
 			</Parent>
 		</>

@@ -8,7 +8,7 @@ const Main = () => {
 	return (
 		<Box sx={{ mt: {xs: '56px', md: '64px'}, overflowY: 'auto', 
 				height: {xs: 'calc(100% - 56px)', md: 'calc(100% - 64px)',
-				}, backgroundColor: "secondary.light" }} 
+				}, backgroundColor: "primary.main" }} 
 				component="main" id="main">
 			<Router />
 			<MessageNotifications />

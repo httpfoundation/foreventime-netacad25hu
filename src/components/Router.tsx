@@ -14,6 +14,7 @@ import Logout from "./Logout"
 import Rating from "../pages/Rating"
 import MenuCard from "../pages/MenuCard"
 import Handout from "../pages/Handout"
+import IokTheme from "../pages/ThemeDemo"
 
 
 const ScrollToTop = () => {
@@ -38,6 +39,8 @@ const Router = () =>{
 		<>
 		<ScrollToTop />
 		<Routes>
+			{/* Theme */}
+			<Route path="/theme" element={<IokTheme />} />
 			{/* Home */}
 			<Route index element={(isWelcomeVisited) ?  <Home /> : <Navigate to="/koszonto/" />} />
 			{/* Reception */}

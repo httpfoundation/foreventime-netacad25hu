@@ -5,8 +5,9 @@ import { Home as HomeIcon, Menu as MenuIcon, People as PeopleIcon, Coffee as Cof
 import React, { useEffect, useMemo, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useStages, usePageTitle, useRegistration } from "../Store"
-import iokLogo from "../assets/images/iok2022_logo_w_httpw_sm.png"
-import educationnextLogo from "../assets/images/educationnextlogo_inverz.png"
+import iokLogo from "../assets/images/httpiok2023_logo_w-b-w_sm.png"
+//import iokLogo from "../assets/images/iok2022_logo_w_httpw_sm.png"
+//import educationnextLogo from "../assets/images/educationnextlogo_inverz.png"
 import {styled} from "@mui/system"
 
 type MenuItem = {
@@ -33,11 +34,11 @@ const Header = () => {
 		{label: 'Program', to: '/eloadasok', icon: <EventNoteIcon />},
 		{label: 'Előadók', to: '/eloadok', icon: <PeopleIcon />},
 		{divider: true},
-	/* 	{label: 'Szekciók', divider: true, icon: <LiveTvIcon sx={{mr: 1, transform: 'translateY(5px)', color: 'rgba(0, 0, 0, 0.4)'}} />},
-		...stages.map(stage => ({label: stage.name, to: `/szekcio/${stage.slug}`})), */
-		/* {divider: true}, */
-/* 		{label: 'IOK Cafe', to: '/iok-cafe', icon: <CoffeeIcon />},
- */		{label: 'Támogatók', to: '/tamogatok', icon: <StarIcon />},
+		{label: 'Szekciók', divider: true, icon: <LiveTvIcon sx={{mr: 1, transform: 'translateY(5px)', color: 'rgba(0, 0, 0, 0.4)'}} />},
+		...stages.map(stage => ({label: stage.name, to: `/szekcio/${stage.slug}`})), 
+		{divider: true},
+ 		{label: 'IOK Cafe', to: '/iok-cafe', icon: <CoffeeIcon />},
+		{label: 'Támogatók', to: '/tamogatok', icon: <StarIcon />},
 		{label: 'Értékelő űrlap', to: '/ertekeles', icon: <StarIcon />},
 		{divider: true},
 		{label: 'Kijelentkezés', to: '/kijelentkezes', icon: <LogoutIcon />},
@@ -45,7 +46,7 @@ const Header = () => {
 
 	const pageTitle = usePageTitle()
 	useEffect(() => {
-		document.title = pageTitle ? "EDUCATION:NEXT 2022 | " + pageTitle : "EDUCATION:NEXT 2022"
+		document.title = pageTitle ? "IOK 2023 | " + pageTitle : "IOK 2023"
 	}, [pageTitle])
 	
 	
@@ -81,12 +82,12 @@ const Header = () => {
 			</Box>
 		</Drawer>
 		
-		<AppBar position="fixed" color="secondary" sx={{
+		<AppBar position="fixed" color="primary" sx={{
 			zIndex: theme => theme.zIndex.drawer + 1
 		}}>
 			<Toolbar>
 				<Box sx={{flex: '0 0 auto', transform: 'translateY(2px)'}}>
-					<Link to="/"><Logo src={educationnextLogo} />	</Link>
+					<Link to="/"><Logo src={iokLogo} />	</Link>
 				</Box>
 				<Typography variant="h6" noWrap sx={{flex: 1, transform: 'translateY(2px)'}} align="center">
 					{/* {pageTitle} */}

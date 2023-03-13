@@ -9,25 +9,27 @@ import { PlayCircle as PlayCircleIcon, DownloadForOffline as DownloadIcon, Info 
 
 /* Egy napirendi pont komponense */
 
-const TalkTitle = styled('div')`
-		color: #000;
+const TalkTitle = styled('div')( ({theme}) =>`
+		color: ${theme.palette.grey[300]};
 		transition: all 0.2s ease-out;
 		font-size: 1.1rem;
 		font-weight: 700;
 		padding: 0px 0 1px 0;`
+)
 
-const SpeakerCaption = styled('div')`
+const SpeakerCaption = styled('div')( ({theme}) =>`
 		transition: all 0.2s ease-out;
 		font-size: 0.75rem;
 		font-weight: 500;
-		color: rgba(0, 0, 0, 0.5);`
+		color: ${theme.palette.grey[300]};`
+)
 
-const Description = styled('div')`
+const Description = styled('div')( ({theme}) =>`
 		transition: all 0.2s ease-out;
 		overflow: hidden;
 		font-size: 0.9rem;
-		max-height: 0;
-	`
+		max-height: 0;`
+)
 
 const Speaker = (props: {speaker: DatoSpeaker}) => {
 	const { speaker } = props

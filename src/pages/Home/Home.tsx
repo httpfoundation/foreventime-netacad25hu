@@ -11,11 +11,11 @@ const Home = () => {
         [...dashboardElements], 
         [dashboardElements]
     )
-
+    console.log("homeDashboardItems", homeDashboardItems)
    return (
 
             <PageContainer container>
-                <PageTitle>EDUCATION:NEXT Aula</PageTitle>
+                <PageTitle>IOK 2023 Aula</PageTitle>
                 <Dashboard items={homeDashboardItems} />
             </PageContainer>
         

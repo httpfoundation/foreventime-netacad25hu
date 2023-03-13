@@ -1,6 +1,6 @@
 import { createTheme, responsiveFontSizes } from '@mui/material/styles'
 
-const educationnextBlue = "#273568"
+/* const educationnextBlue = "#273568"
 const educationnextDarkBlue = "#132a73"
 const educationnextGreen = "#93c47d"
 const educationnextDarkGreen = "#6c915c"
@@ -9,41 +9,70 @@ const educationnextLightGreen = "#dfffd8"
 const educationnextCreativeGreen = "#c1df61"
 const educationnextCreativeDarkGreen = "#7e923f"
 const educationnextCreativeDarkBlue = "#42518a"
-const educationnextCreativeLightGreen = "#edffcf"
+const educationnextCreativeLightGreen = "#edffcf" */
 
-const iokDarkBlue = "#14475C"
+const iokBlue1 = "#14475C"
 const iokLightBlue = "#d6f4f5"
+const iokDarkBlue = "#002939"
+const iokBlue = "#003b52"
+const iokAmber = "#f18c4e"
+const iokLightAmber = "#fde9d1"
+const iokDarkAmber = "#a86236"
+const iokBlack = "#000"
+const iokWhite = "#fff"
+const iokBlueGrey = "#578392"
+const iokCyan = "#48abb9"
+const iokGrey = "#9e9e9e"
+const iokInfo = "#336274"
+
+const colorPrimaryBackground = iokBlue
+const colorPrimaryDark = iokDarkBlue
+const colorPrimaryLight = iokLightBlue
+const colorPrimaryText = iokWhite
+
+const colorSecondaryBackground = iokAmber
+/* const colorSecondaryDark = iokAmber */
+const colorSecondaryLight = iokLightAmber
+const colorSecondaryText = iokWhite
+
+const colorInfoBackground = iokBlue //iokBlueGrey
+
+const colorTextDisabled = iokGrey
+const colorInfo = iokInfo
 
 
-/* const colorDark = iokDarkBlue
-const colorLight = iokLightBlue */
-const colorDark = educationnextCreativeDarkBlue
-const colorLight = educationnextCreativeLightGreen //"#fff" //educationnextLightGreen
-const colorDashboardDark = educationnextCreativeGreen
-const colorDashboardCaption = educationnextDarkGreen
+/* const colorDark = iokDarkBlue //iokAmber // iokDarkBlue
+const colorDark2 = iokBlack //
+const colorLight = iokDarkBlue //iokLightAmber //iokLightBlue //"#fff" //educationnextLightGreen
+const colorDashboardDark = iokBlue //educationnextCreativeGreen
+const colorDashboardCaption = iokBlue //educationnextDarkGreen */
+
 
 
 let theme = createTheme({
 	palette: {
 		mode: 'light',
 		primary: {
-		  main: '#ff6d00',
-		  contrastText: '#fff',
+		  main: colorPrimaryBackground,
+		  dark: colorPrimaryDark,
+		  light: colorPrimaryLight,
+		  contrastText: colorPrimaryText,
 		},
 		secondary: {
-		  main: colorDark, //iojDarkB
-		  dark: colorDark,
-		  light: colorLight,		  
-		  contrastText: '#fff',
+		  main: colorSecondaryBackground, 
+		  //dark: colorSecondaryDark, //unused??
+		  light: colorSecondaryLight,		  
+		  contrastText: colorSecondaryText,
 		},
 		info: {
-		  main: '#f18c4e',
-		  dark: colorDashboardDark,
+		  main: colorInfo, // '#f18c4e',
+		  //dark: colorDashboardDark,
 
 		},
 		text: {
 			primary: "rgba(0, 0, 0, 0.87)",
-			secondary: '#14475C'
+			secondary: iokWhite, //'#14475C',
+			disabled: colorTextDisabled
 		},
 	},
 	typography: {
@@ -79,7 +108,8 @@ let theme = createTheme({
 		  styleOverrides: {
 			tooltip: {
 			  lineHeight: "1.2rem !important",
-			  backgroundColor: colorDark
+			  backgroundColor: "rgb(91, 129, 143, 0.9)",
+			  marginTop: "5rem",
 			}
 		  }
 		}

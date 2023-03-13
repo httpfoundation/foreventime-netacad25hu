@@ -7,6 +7,7 @@ import {Tooltip, Typography} from '@mui/material'
 import { Link } from 'react-router-dom'
 import {Fade as Grow} from '@mui/material'
 import { useState } from 'react'
+import { hover } from '@testing-library/user-event/dist/hover'
 
 interface BubbleProps {
 	corner?: 'bl' | 'br' | 'tl' | 'tr' | 'none',
@@ -58,7 +59,7 @@ const LinkOrOnClick = (props: {to?: string, onClick?: () => void, children: Reac
 }
 
 const Bubble = (props: BubbleProps) => {
-	const { size, corner, timeout, caption, title, tooltipPlacement, img, imgWidth, hoverImg, external, to } = props
+	const { size, corner, timeout, caption, title, tooltipPlacement, img, imgWidth, hoverImg, external, to, light } = props
 	console.log("img", img)
 	//"xl" is the default size
  	const width = (size === "xs") ? "350px" : (size === "lg") ? "200px" :  "450px"
@@ -72,26 +73,28 @@ const Bubble = (props: BubbleProps) => {
 		borderBottomLeftRadius: (corner==="bl") ? "0" : borderRadius,
 		borderTopRightRadius: (corner==="tr") ? "0" : borderRadius,
 		borderTopLeftRadius: (corner==="tl") ? "0" : borderRadius,
-		light: props.light
+		light
 	}
 	return (
 		<Tooltip title={title ?? ""} placement={tooltipPlacement ?? "top"} arrow  >
 			<BubbleWrapper bubbleWrapperProps={bubbleWrapperProps} onMouseEnter = {() => {if (hoverImg) setImage(hoverImg)}} onMouseLeave={() => {if (hoverImg) setImage(img)}}>
-				<BubbleDecoration bubbleWrapperProps={bubbleWrapperProps}></BubbleDecoration>
 				<LinkOrOnClick external={external} to={to} onClick={props.onClick}>
-					<Grow in style={{ transformOrigin: '0 0 0' }}
-							{...{timeout : timeout}} >
-							<BubbleContent>
-							
-								<BubbleImage src={image} alt={caption} width={imgWidth} size={size}/>
+					<>
+						<BubbleDecoration bubbleWrapperProps={bubbleWrapperProps}></BubbleDecoration>
+						<Grow in style={{ transformOrigin: '0 0 0' }}
+								{...{timeout : timeout}} >
+								<BubbleContent>
 								
-							
-							{/* 	{props.children} */}
-								<BubbleCaption sx={{color:"secondary.dark", minHeight:"38px", fontWeight:"700", textTransform: "uppercase", margin:"auto", width:"85%", marginLeft: "-6px"}}>
-									{caption}
-								</BubbleCaption>					
-							</BubbleContent>
-					</Grow>
+									<BubbleImage src={image} alt={caption} width={imgWidth} size={size}/>
+									
+								
+								{/* 	{props.children} */}
+									<BubbleCaption sx={{}}>
+										{caption}
+									</BubbleCaption>					
+								</BubbleContent>
+						</Grow>
+					</>
 				</LinkOrOnClick>
 			</BubbleWrapper>
 		</Tooltip>
@@ -99,19 +102,25 @@ const Bubble = (props: BubbleProps) => {
 }
 
 const BubbleDecoration = styled('div')<BubbleWrapperProps>(({ theme, bubbleWrapperProps }) => ({
+	borderColor: theme.palette.secondary.main,
 	width: "100%",
 	height: "100%",
 	borderBottomRightRadius: bubbleWrapperProps.borderBottomRightRadius,
 	borderBottomLeftRadius: bubbleWrapperProps.borderBottomLeftRadius,
 	borderTopRightRadius: bubbleWrapperProps.borderTopRightRadius,
 	borderTopLeftRadius: bubbleWrapperProps.borderTopLeftRadius,
+	zIndex: "10",
 	borderStyle: "solid",
 	borderWidth: "1px",
 	overflow: "hidden",
 	position: "absolute",
 	transition: "all 0.3s ease-in-out",
 	top: "-12px",
-	left: "-12px"
+	left: "-12px",
+	'&:hover': {
+		top: "0px",
+		left: "0px",
+	},
 }))
 
 const BubbleWrapper = styled("div", 
@@ -126,7 +135,7 @@ const BubbleWrapper = styled("div",
 			display: "inlineBlock",
 			position: "relative",
 			aspectRatio: "1",
-			backgroundColor: (bubbleWrapperProps.light) ? theme.palette.info.main :theme.palette.info.dark,
+			backgroundColor: (bubbleWrapperProps.light) ? theme.palette.info.light :theme.palette.primary.dark,
 			transition: "transform 0.2s, box-shadow 0.2s ",
 			...bubbleWrapperProps,
 			"&:hover": {
@@ -153,8 +162,14 @@ const BubbleContent = styled('div')
 const BubbleCaption = styled(Typography)
 (( {theme} ) => (
 	{
-		color: theme.palette.primary.main,
-		fontWeight: "300"
+		color: theme.palette.primary.contrastText,
+		minHeight:"38px", 
+		fontWeight:"200", 
+		textTransform: "none", 
+		margin:"auto", 
+		width:"85%", 
+		marginLeft: "-6px"
+	
 	}
 ))
 
