@@ -53,7 +53,11 @@ const Speakers = (props: {speakers: DatoSpeaker[] | undefined}) => {
 	)	
 }
 
-const SpeakerImage = styled('div')( (props: {counter: number, speaker: DatoSpeaker}) => `
+interface SpeakerImageProps  {
+	counter: number;
+	speaker: DatoSpeaker;
+  }
+const SpeakerImage = styled('div')<SpeakerImageProps>( ({counter, speaker, theme }) => `
 		width: 100%;
 		transition: all 0.2s ease-out;
 		background-size: cover;
@@ -61,8 +65,11 @@ const SpeakerImage = styled('div')( (props: {counter: number, speaker: DatoSpeak
 		border-radius: 100%;
 		aspect-ratio: 1;
 		align-self: center;
-		background-image: url(${props.speaker.image?.url});
-		transform: translateY(${props.counter*(-7)}px);
+		background-image: url(${speaker.image?.url});
+		transform: translateY(${counter*(-7)}px);
+		border-style: solid;
+		border-width: 0px;
+		border-color: ${theme.palette.primary.light}33;
 `)
 
 const SpeakersImages = (props: {speakers: DatoSpeaker[] | undefined}) => {
@@ -75,7 +82,8 @@ const SpeakersImages = (props: {speakers: DatoSpeaker[] | undefined}) => {
 		transition: all 0.2s ease-out;
 		${theme.breakpoints.only("xs")} { 
 			display: none;
-		}
+		},
+	}
 	`)
 	return (
 		<SpeakersImagesDiv>
@@ -141,12 +149,21 @@ const ScheduleItem = (props: {
 }) => {
 	const talk = useTalk(props.talkId)
 	const noClick = talk?.speakers.length === 0
-	const LinkOrSpan = (true||noClick) ? (props: {to?: string, children: React.ReactNode}) =>  <span>{props.children}</span> : Link
-	/* <LinkOrSpan to={`/eloadasok/${talk.id}`}> */
 	const navigate = useNavigate()
+	const handleClick = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>)  => {
+		e.stopPropagation()
+		navigate(`/eloadasok/${talk.id}`)
+	}
+	
+	const isOnlyTalkInfoAvailable = (!talk.recordings || talk.recordings.length === 0) && (!talk.presentation)
+	const navigateToTalk = () => {
+		navigate(`/eloadasok/${talk.id}`)
+	}
+
+	const handleContainerClick = props.onClick && !noClick ? props.onClick : () => {}
 
 	return (
-		<ScheduleItemContainer open={props.open} noClick={noClick} onClick={props.onClick && !noClick ? props.onClick : () => {}}>
+		<ScheduleItemContainer open={props.open} noClick={noClick} onClick={isOnlyTalkInfoAvailable ? navigateToTalk :handleContainerClick}>
 				<SpeakersImages speakers={talk?.speakers} /> 
 				<ScheduleItemContent>
 					<ScheduleTimeCaption date={talk?.start} />
@@ -174,17 +191,12 @@ const ScheduleItem = (props: {
 						</IconButton>
 					</Tooltip>}
 					<Tooltip title="További információ" arrow>
-						<IconButton size="small" color="secondary" onClick={e => {
-							e.stopPropagation()
-							navigate(`/eloadasok/${talk.id}`)
-						}}>
+						<IconButton size="small" color="secondary" onClick={handleClick}>
 							<InfoIcon sx={{fontSize: 40}} />
 						</IconButton>
 					</Tooltip>
 				</ScheduleItemControls>
 			</ScheduleItemContainer>
-
-		/* </LinkOrSpan> */
 	)
 }
 

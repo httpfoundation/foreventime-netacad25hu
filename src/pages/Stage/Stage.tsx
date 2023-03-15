@@ -62,13 +62,14 @@ const StagePage = () => {
 	useEffect(() => {
 			// TODO: Keep language preference
 		
-		//if (!stage?.streams?.find(stream => stream.id === selectedStreamId)) setSelectedStreamId(stage?.streams?.length ? stage?.streams[0].id : null)
+		if (!stage?.streams?.find(stream => stream.id === selectedStreamId)) setSelectedStreamId(stage?.streams?.length ? stage?.streams[0].id : null)
 		
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [stage])
 
 	
 	const selectedStream = streams?.find(stream => stream.id === selectedStreamId)
+	console.log({selectedStream})
 	
 	const [selectedTab, setSelectedTab] = useState<number>(0)
 
@@ -114,7 +115,7 @@ const StagePage = () => {
 								{(stage.staticVideo) ? <video style={{backgroundColor: palette.primary.main, width: '100%', height: '100%'}} src={stage.staticVideo.url} autoPlay loop controls /> : <NoStream />}
 							</VideoContainer> }
 						
-						{/*  { stage?.name && (!selectedStreamId || (!selectedStream?.live && !stage.staticVideo?.url) ) && <NoStream /> } */}
+						  { stage?.name && (!selectedStreamId || (!selectedStream?.live && !stage.staticVideo?.url) ) && <NoStream /> }
 					</Grid>
 					<Grid item xs={12} lg={3} sx={{height: {xs: 'calc(100% - (100vw * 9 / 16))', lg: '100%'}, minHeight: {xs: '300px', lg: 0}}}>
 						<Box sx={{display: 'flex', flexDirection: 'column', maxHeight: 'calc(100%)', height: '100%'}}>

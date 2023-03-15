@@ -18,14 +18,15 @@ const LanguageSelect = (props: {
 	return (
 		<>
 			{options?.map(option => <Chip
-					sx={{mr: 1, fontSize: '0.8rem', fontFamily: 'sans-serif', fontWeight: value === option.id ? '700' : '600', color: "grey.300"}}
+					sx={{mr: 1, fontSize: '0.8rem', fontFamily: 'sans-serif', fontWeight: value === option.id ? '700' : '600', borderWidth:0}}
 					variant={value === option.id ? "filled" : "outlined"}
 					avatar={option.image?.url ? <Avatar alt={option.name} src={option.image?.url} /> : undefined}
+					color="secondary" 
 					key={option.id}
 					label={option.name}
 					icon={option.image?.url ? undefined : <LanguageIcon />}
 					onClick={() => onChange(option.id)}
-					deleteIcon={<DoneIcon />}
+					deleteIcon={<DoneIcon sx={{color: "grey.300"}}/>}
 					onDelete={value === option.id && options.length > 1 ? () => {} : undefined}
 				/>)}
 		</>
