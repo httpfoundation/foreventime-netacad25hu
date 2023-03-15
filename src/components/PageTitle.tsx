@@ -5,7 +5,7 @@ const PageTitleStyled = styled(Typography)<TypographyProps | { align: "center" |
     ({ theme, align, color }) => `
 	text-align: ${align || "center"};
 	margin: ${theme.spacing(3)} 0;
-	color: ${color || theme.palette.text.secondary};
+	color: ${color || theme.palette.text.primary};
 `
 )
 

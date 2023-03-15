@@ -17,7 +17,8 @@ const PresenterWrapper = styled('div', {shouldForwardProp: (prop) => prop !== "n
 	}
 	${!noClick && `
 		cursor: pointer;
-	`}
+	`};
+	color: ${theme.palette.text.secondary};
 `)
 
 const PresenterCardImage = styled('img')(({ theme }) => `

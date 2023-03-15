@@ -154,53 +154,62 @@ const Rating = () => {
 			<CircularProgress size={60} />
 		</Backdrop>
 
-            <PageTitle>Értékelés</PageTitle>
-				<Box sx={{textAlign: "center", pb:4}}>
+		<PageTitle>Értékelés</PageTitle>
+			<Box sx={{textAlign: "center", pb:4}}>
 				<StructuredText data={ratingText} />
-				</Box>
-				{ ratingsSent && <Box sx={{width: '600px', maxWidth: '100%', mx: 'auto', mb: 2}}>
-					<Paper sx={{p: 2, textAlign: 'center'}}>
-						<Typography variant="h6" fontWeight={700} align="center" sx={{mt: 0.5}}>
-							Köszönjük, hogy értékelted a konferenciát!
-						</Typography>
-						<img src={edunextImg} style={{width: '300px', margin: '30px 0'}} />
-					</Paper>	
-				</Box>}
-				{ !stages.length ? null : (
-				<Box sx={{width: '600px', maxWidth: '100%', mx: 'auto'}}>
-					{
-						shownStages.map((stage, index) => {
-							return (<Paper sx={{px: 2, mb: 2, pb: 1, pt: 2}} key={index}>
-								<Typography variant="h6" fontWeight={700} align="center" sx={{mt: 0.5}}>{stage.pageTitle}</Typography>
-								<Divider sx={{mt: 2, mb: 4}} />
-								{stage.schedule?.slice(2).map((talk, index) => <TalkRate rating={ratings[talk.id]} setRating={r => {
-									const _ratings = {...ratings, [talk.id]: r}
-									//iokLocalStorage("set", "ratings", JSON.stringify(_ratings))
-									setRatings(_ratings)
-									sendRating(false, _ratings)
-								}} key={index} id={talk.id} />)}
-
-							</Paper>)
-						})
-					}
-
-					<Paper sx={{px: 2, mb: 2, pb: 2, pt: '1px'}}>
-						{otherQuestions.map((question, index) => (question.type === "all" || (question.type === "onsite" && registration?.onsite) || (question.type === "offsite" && !registration?.onsite)) ? <OtherQuestion question={question.question} rating={ratings[question.id]} setRating={r => {
-								const _ratings = {...ratings, [question.id]: r}
+			</Box>
+			{ ratingsSent && <Box sx={{width: '600px', maxWidth: '100%', mx: 'auto', mb: 2}}>
+				<Paper sx={{p: 2, textAlign: 'center'}}>
+					<Typography variant="h6" fontWeight={700} align="center" sx={{mt: 0.5}}>
+						Köszönjük, hogy értékelted a konferenciát!
+					</Typography>
+					<img src={edunextImg} style={{width: '300px', margin: '30px 0'}} />
+				</Paper>	
+			</Box>}
+			{ !stages.length ? null : (
+			<Box sx={{width: '600px', maxWidth: '100%', mx: 'auto'}}>
+				{
+					shownStages.map((stage, index) => {
+						return (<Paper sx={{px: 2, mb: 2, pb: 1, pt: 2, color: "text.secondary"}} key={index}>
+							<Typography variant="h6" fontWeight={700} align="center" sx={{mt: 0.5}}>{stage.pageTitle}</Typography>
+							<Divider sx={{mt: 2, mb: 4}} />
+							{stage.schedule?.slice(2).map((talk, index) => <TalkRate rating={ratings[talk.id]} setRating={r => {
+								const _ratings = {...ratings, [talk.id]: r}
 								//iokLocalStorage("set", "ratings", JSON.stringify(_ratings))
 								setRatings(_ratings)
 								sendRating(false, _ratings)
-							}} key={index} id={question.id} /> : null)}
-						<Typography variant="h6" fontSize={'0.8rem'} align="left" fontWeight={600}>Milyen témáról hallanál szívesen a következő konferencián?</Typography>
-						<TextField value={recommendedTopic} onChange={e=>setRecommendedTopic(e.target.value)} multiline fullWidth minRows={8} color="secondary" placeholder="Ide írhatod témajavaslataidat"/>
-						<Typography variant="h6" fontSize={'0.8rem'} align="left" fontWeight={600} sx={{mt:2}}>Megjegyzés, észrevétel, javaslat a konferenciával kapcsolatban:</Typography>
-						<TextField value={comment} onChange={e=>setComment(e.target.value)} multiline fullWidth minRows={8} color="secondary" placeholder="Ide írhatod egyéb javaslataidat, észrevételeidet és megjegyzéseidet"/>
-					</Paper>
+							}} key={index} id={talk.id} />)}
 
-					<Button size="large" variant="contained" fullWidth color="secondary" onClick={() => sendRating()}>
-						Küldés
-					</Button>
-				</Box> )}
+						</Paper>)
+					})
+				}
+
+				<Paper sx={{px: 2, mb: 2, pb: 2, pt: '1px', color: "text.secondary"}}>
+					{otherQuestions.map((question, index) => (question.type === "all" || (question.type === "onsite" && registration?.onsite) || (question.type === "offsite" && !registration?.onsite)) ? <OtherQuestion question={question.question} rating={ratings[question.id]} setRating={r => {
+							const _ratings = {...ratings, [question.id]: r}
+							//iokLocalStorage("set", "ratings", JSON.stringify(_ratings))
+							setRatings(_ratings)
+							sendRating(false, _ratings)
+						}} key={index} id={question.id} /> : null)}
+					<Typography variant="h6" fontSize={'0.8rem'} align="left" fontWeight={600}>Milyen témáról hallanál szívesen a következő konferencián?</Typography>
+					<TextField 
+						value={recommendedTopic} 
+						onChange={e=>setRecommendedTopic(e.target.value)} 
+						multiline 
+						fullWidth 
+						minRows={8} 
+						color="secondary" 
+						placeholder="Ide írhatod témajavaslataidat"
+						sx = {{"& .MuiInputBase-root": {color: 'text.secondary'}}}
+					/>
+					<Typography variant="h6" fontSize={'0.8rem'} align="left" fontWeight={600} sx={{mt:2}}>Megjegyzés, észrevétel, javaslat a konferenciával kapcsolatban:</Typography>
+					<TextField value={comment} onChange={e=>setComment(e.target.value)} multiline fullWidth minRows={8} color="secondary" placeholder="Ide írhatod egyéb javaslataidat, észrevételeidet és megjegyzéseidet"/>
+				</Paper>
+
+				<Button size="large" variant="contained" fullWidth color="secondary" onClick={() => sendRating()}>
+					Küldés
+				</Button>
+			</Box> )}
 				
 				
 		</PageContainer> 

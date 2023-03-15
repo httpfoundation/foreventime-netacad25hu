@@ -127,7 +127,7 @@ const StagePage = () => {
 										options={stage?.streams?.map(stream => stream.language) ?? []}
 									/>
 								</div>
-								<Tabs textColor="secondary" indicatorColor="secondary"  value={selectedTab} onChange={(e, v) => setSelectedTab(v)} centered sx={{mt: stage?.streams?.length ? 1 : 0}}>
+								<Tabs textColor="secondary" indicatorColor="secondary" value={selectedTab} onChange={(e, v) => setSelectedTab(v)} centered sx={{"& button": {color:"text.primary"}, mt: stage?.streams?.length ? 1 : 0, color:"text.secondary"}}>
 									<Tab label="Program" />
 									<Tab label="Kérdések" />
 									<Tab label="Chat" disabled={chatDisabled} />

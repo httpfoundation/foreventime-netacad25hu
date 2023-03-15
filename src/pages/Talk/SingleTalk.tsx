@@ -5,7 +5,7 @@ import { PageContainer, PageSubtitle, PageTitle, Paragraph } from "../../compone
 import PresenterCard, { PresenterGrid } from "../../components/PresenterCard"
 import { useTalk } from "../../Store"
 import { Typography, TypographyProps } from "@mui/material"
-import { styled } from '@mui/material/styles'
+import { styled, useTheme } from '@mui/material/styles'
 import { PlayCircle as PlayCircleIcon, DownloadForOffline as DownloadIcon, Info as InfoIcon  } from "@mui/icons-material"
 
 export const SingleTalk = () => {
@@ -14,16 +14,17 @@ export const SingleTalk = () => {
 
 	const talk = useTalk(talkSlug)
 	const navigate = useNavigate()
+	const theme = useTheme()
 
 	return (
 		<PageContainer container>
 			<PageTitle >{talk?.title}</PageTitle>
 			{/* <TalkTitle variant="h2"></TalkTitle> */}
 			<Stack direction="row" spacing={2} >
-			<Chip label={talk.start && new Date(talk.start).toLocaleString('hu-hu', { minute: 'numeric', hour: 'numeric' })} icon={<TimeIcon />} sx={{}}/>
-			<Tooltip title="Közvetítés megtekintése" placement="right" arrow>
-				<Chip clickable component={Link} to={`/szekcio/${talk?.stage?.slug}`} label={`"${talk?.stage?.name}" szekció`} icon={<LiveTvIcon />} sx={{pl: 1}} />
-			</Tooltip>
+				<Chip label={talk.start && new Date(talk.start).toLocaleString('hu-hu', { minute: 'numeric', hour: 'numeric' })} icon={<TimeIcon style = {{color: theme.palette.text.primary}}/>} />
+				<Tooltip title="Közvetítés megtekintése" placement="right" arrow>
+					<Chip clickable component={Link} to={`/szekcio/${talk?.stage?.slug}`} label={`"${talk?.stage?.name}" szekció`} icon={<LiveTvIcon style = {{color: theme.palette.text.primary}}/>} sx={{pl: 1}} />
+				</Tooltip>
 			</Stack>
 			{ talk.recordings?.map(recording => <Button variant="contained" color="secondary" sx={{mr: 1, mt: 2, pl: 1.3}} onClick={() => navigate('/szekcio/' + talk.stage?.slug, {state: {streamId: recording.id, openScheduleItem: talk.id}})}>
 				<div style={{zIndex: 101, border: '2px solid #14475C', width: 26, height: 26, borderRadius: '100%'}}><PlayCircleIcon sx={{zIndex: 101}} /></div>

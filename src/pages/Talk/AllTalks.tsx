@@ -18,7 +18,7 @@ export const AllTalks = () => {
 			<Container>
 				{stages?.map(stage => (
 					<Box key={stage.id} sx={{color: "primary.contrastText", pt:2, pb:2 }}>
-						<Typography variant="h2" noWrap  component={Link} to={`/szekcio/${stage.slug}`} color="textSecondary">
+						<Typography variant="h2" noWrap  component={Link} to={`/szekcio/${stage.slug}`} color="secondary">
 							{stage.name} szekció
 						</Typography>
 						{ stage.schedule?.map(talk => <ScheduleItem onPlay={streamId => navigate('/szekcio/' + stage.slug, {state: {streamId, openScheduleItem: talk.id}})} key={talk.id} onClick={() => setOpenScheduleItem(openScheduleItem === talk.id ? null : talk.id)} open={openScheduleItem === talk.id} talkId={talk.id} />)}

@@ -67,11 +67,11 @@ export const Questions = (props: { schedule?: DatoTalk[]; stageId?: number; }) =
 		<Box sx={{ p: 2 }}>
 			<form onSubmit={sendQuestion}>
 				<TextField fullWidth label="Név" color="secondary" sx={{ mb: 0 }} value={!anonymus ? registration?.name : "≪ Névtelen ≫"} disabled />
-				<FormControlLabel control={<Checkbox color="secondary" value={anonymus} onChange={(e, c) => setAnonymus(c)} />} label="Névtelen kérdés" sx={{ my: '5px' }} />
+				<FormControlLabel control={<Checkbox color="secondary" value={anonymus} onChange={(e, c) => setAnonymus(c)} />} label="Névtelen kérdés" sx={{ my: '5px'}} />
 				<FormControl fullWidth sx={{ my: 1 }} required>
 					<InputLabel color="secondary">Előadás</InputLabel>
 					<Select value={targetTalk} label="Előadás" onChange={(e) => setTargetTalk(Number(e.target.value))} color="secondary" required>
-						{props.schedule?.filter(talk => talk.speaker.length).map(talk => <MenuItem key={talk.id} value={talk.id}>{talk.title}</MenuItem>)}
+						{props.schedule?.filter(talk => talk.speaker.length).map(talk => <MenuItem key={talk.id} value={talk.id} >{talk.title}</MenuItem>)}
 					</Select>
 				</FormControl>
 				<FormControl fullWidth sx={{ mt: 1 }}>

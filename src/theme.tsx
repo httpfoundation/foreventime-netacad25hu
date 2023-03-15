@@ -18,12 +18,12 @@ const iokBlue = "#003b52"
 const iokAmber = "#f18c4e"
 const iokLightAmber = "#fde9d1"
 const iokDarkAmber = "#a86236"
-const iokBlack = "#000"
-const iokWhite = "#fff"
+const iokWhite = "rgba(255, 255, 255, 0.87)"
 const iokBlueGrey = "#578392"
 const iokCyan = "#48abb9"
 const iokGrey = "#9e9e9e"
 const iokInfo = "#336274"
+const iokBlack ="rgba(0, 0, 0, 0.87)"
 
 const colorPrimaryBackground = iokBlue
 const colorPrimaryDark = iokDarkBlue
@@ -39,6 +39,9 @@ const colorInfoBackground = iokBlue //iokBlueGrey
 
 const colorTextDisabled = iokGrey
 const colorInfo = iokInfo
+
+const colorBlack = iokBlack
+const colorWhite = iokWhite
 
 
 /* const colorDark = iokDarkBlue //iokAmber // iokDarkBlue
@@ -70,8 +73,8 @@ let theme = createTheme({
 
 		},
 		text: {
-			primary: "rgba(0, 0, 0, 0.87)",
-			secondary: iokWhite, //'#14475C',
+			primary:colorWhite, //"rgba(0, 0, 0, 0.87)",
+			secondary: colorBlack, //'#14475C',
 			disabled: colorTextDisabled
 		},
 	},
@@ -112,10 +115,42 @@ let theme = createTheme({
 			  marginTop: "5rem",
 			}
 		  }
-		}
-	  }
-})
+		},
+		MuiInputLabel: {
+			styleOverrides: {
+				root: {
+					color: colorWhite,
+				},
+		  },
+		},
+		MuiCheckbox: {
+			styleOverrides: {
+				root: {
+					color: colorWhite,
+				},
+		  },
+		},
+		MuiMenuItem: {
+			styleOverrides: {
+				root: {
+					color: colorBlack,
+				},
+		  },
+		},
 
+		MuiInputBase: {
+			styleOverrides: {
+				root: {
+					fieldset: 
+						{borderColor: colorWhite},
+					svg: {color: colorWhite},
+				},
+			},
+		},
+		
+
+	}
+})
 
 
 theme.typography.h1 = {

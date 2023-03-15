@@ -3,9 +3,9 @@ import { styled } from '@mui/material/styles'
 
 const Paragraph = styled(Typography)<TypographyProps>(({theme, align}) => `
 	font-weight: 400;
-	font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+	/* font-family: "Roboto", "Helvetica", "Arial", sans-serif; */
 	text-align: justify;
-	margin: 1.2rem 0;
+	margin: 1.2rem 0 1.8rem 0;
 	line-height: 1.5;
 	font-size: 1rem;
 `)

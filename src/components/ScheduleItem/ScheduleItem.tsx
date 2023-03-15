@@ -120,7 +120,7 @@ const ScheduleItemContainer = styled('div', {shouldForwardProp: prop => prop !==
 	${!noClick ? `
 		cursor: pointer;
 		&:hover {
-			background-color: rgba(0, 0, 0, 0.1);
+			background-color: rgba(0, 0, 0, 0.3);
 			/* box-shadow: 0 0rem 1rem rgba(0,0,0,0.2);
 			transform: scale(1.03); */
 		}
