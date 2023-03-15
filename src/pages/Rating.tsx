@@ -175,7 +175,7 @@ const Rating = () => {
 								<Divider sx={{mt: 2, mb: 4}} />
 								{stage.schedule?.slice(2).map((talk, index) => <TalkRate rating={ratings[talk.id]} setRating={r => {
 									const _ratings = {...ratings, [talk.id]: r}
-									//window.localStorage.setItem("ratings", JSON.stringify(_ratings))
+									//iokLocalStorage("set", "ratings", JSON.stringify(_ratings))
 									setRatings(_ratings)
 									sendRating(false, _ratings)
 								}} key={index} id={talk.id} />)}
@@ -187,7 +187,7 @@ const Rating = () => {
 					<Paper sx={{px: 2, mb: 2, pb: 2, pt: '1px'}}>
 						{otherQuestions.map((question, index) => (question.type === "all" || (question.type === "onsite" && registration?.onsite) || (question.type === "offsite" && !registration?.onsite)) ? <OtherQuestion question={question.question} rating={ratings[question.id]} setRating={r => {
 								const _ratings = {...ratings, [question.id]: r}
-								//window.localStorage.setItem("ratings", JSON.stringify(_ratings))
+								//iokLocalStorage("set", "ratings", JSON.stringify(_ratings))
 								setRatings(_ratings)
 								sendRating(false, _ratings)
 							}} key={index} id={question.id} /> : null)}

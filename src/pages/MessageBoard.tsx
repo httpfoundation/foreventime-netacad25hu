@@ -9,6 +9,7 @@ import { styled } from '@mui/material/styles'
 import React, { useEffect } from "react"
 import { Close as CloseIcon, AccessTime as TimeIcon } from "@mui/icons-material"
 import { Link, useLocation } from "react-router-dom"
+import { iokLocalStorage } from "../utils"
 
 const hideMessagesAfterMins = 15
 
@@ -78,7 +79,7 @@ const MessageBoard = () => {
 	const messages = useMessages()
 
 	useEffect(() => {
-		window.localStorage.setItem('readMessages', JSON.stringify(messages.map(m => Number(m.id))))
+		iokLocalStorage("set", 'readMessages', JSON.stringify(messages.map(m => Number(m.id))))
 	}, [messages])
 	return (
  		<PageContainer container>
@@ -91,7 +92,7 @@ const MessageBoard = () => {
 export const MessageNotifications = () => {
 	const messages = useMessages()
 
-	const [readMessages, setReadMessages] = React.useState<number[]>(JSON.parse(window.localStorage.getItem('readMessages') || '[]'))
+	const [readMessages, setReadMessages] = React.useState<number[]>(JSON.parse(iokLocalStorage("get", 'readMessages') || '[]'))
 
 	const [timeouts, setTimeouts] = React.useState<Record<number, number|null>>({})
 
@@ -103,7 +104,7 @@ export const MessageNotifications = () => {
 			if (!timeouts[message.id]) {
 				const timeout = window.setTimeout(() => {
 					setReadMessages(readMessages => [...readMessages, Number(message.id)])
-					window.localStorage.setItem('readMessages', JSON.stringify(JSON.parse(window.localStorage.getItem('readMessages') || '[]').concat(Number(message.id))))
+					iokLocalStorage("set", 'readMessages', JSON.stringify(JSON.parse(iokLocalStorage("get", 'readMessages') || '[]').concat(Number(message.id))))
 					setTimeouts(timeouts => ({...timeouts, [Number(message.id)]: null}))
 				}, notificationTimeout)
 				setTimeouts(timeouts => ({...timeouts, [Number(message.id)]: timeout}))
@@ -123,7 +124,7 @@ export const MessageNotifications = () => {
 		}}>	
 		{unreadMessages.slice(0,2).map((message, index) => <Message key={message.id} message={message} notification onHide={(id) => {
 			if (!readMessages.includes(id)) {
-				window.localStorage.setItem('readMessages', JSON.stringify([...readMessages, id]))
+				iokLocalStorage("set", 'readMessages', JSON.stringify([...readMessages, id]))
 				//console.log("Read", id)
 				setReadMessages([...readMessages, id])
 			}

@@ -15,6 +15,7 @@ import Rating from "../pages/Rating"
 import MenuCard from "../pages/MenuCard"
 import Handout from "../pages/Handout"
 import IokTheme from "../pages/ThemeDemo"
+import { iokLocalStorage } from "../utils"
 
 
 const ScrollToTop = () => {
@@ -31,9 +32,9 @@ const ScrollToTop = () => {
 
 const Router = () =>{
 	const { pathname } = useLocation()
-	const [isWelcomeVisited, setIsWelcomeVisited] = useState(window.localStorage.getItem("welcome")==="true")
+	const [isWelcomeVisited, setIsWelcomeVisited] = useState(iokLocalStorage("get", "welcome")==="true")
 	useEffect(() => {
-		setIsWelcomeVisited(window.localStorage.getItem("welcome")==="true")
+		setIsWelcomeVisited(iokLocalStorage("get", "welcome")==="true")
 	}, [pathname])
 	return (
 		<>

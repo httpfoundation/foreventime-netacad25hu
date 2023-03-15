@@ -1,7 +1,8 @@
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { useQuerySubscription } from "react-datocms"
 import { SiteClient } from "datocms-client"
 import { useRegistration } from "./Store"
+import { iokLocalStorage } from "./utils"
 
 export type QueryError = {
 	code: string
@@ -12,7 +13,7 @@ export type QueryError = {
 const useQuery = <T>(query: string, initialValue: T) : [T, QueryError | null] => {
 	const [result, setResult] = useState<T>(initialValue)
 
-	const token = JSON.parse(window.localStorage.getItem("iok_registration_data") || "{}")?.dato_token
+	const token = JSON.parse(iokLocalStorage("get", "iok_registration_data") || "{}")?.dato_token
 
 	const { data, error } = useQuerySubscription({
 		query,

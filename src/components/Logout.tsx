@@ -1,9 +1,9 @@
-import { Navigate } from "react-router-dom"
+import { iokLocalStorage } from "../utils"
 
 const Logout = () => {
-	window.localStorage.removeItem("iok_registration_data")
-	window.localStorage.removeItem("welcome")
-	window.localStorage.removeItem("ratings")
+	iokLocalStorage("remove", "iok_registration_data")
+	iokLocalStorage("remove", "welcome")
+	iokLocalStorage("remove", "ratings")
 	window.location.href = "/"
 	return null
 }

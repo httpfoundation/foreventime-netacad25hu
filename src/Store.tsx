@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom"
 import Dashboard from "./components/Dashboard"
 import { DatoStage, DatoSpeaker, DatoTalk, DatoComplex, DatoBreakoutRoom, DatoLiveStaticElement, DatoMessage, DatoStaff, DatoStream, DashboardElement, SponsorCategory } from "./types"
 import useQuery from "./useQuery"
+import { iokLocalStorage } from "./utils"
 
 export interface IStore {
 	stages: DatoStage[],
@@ -55,22 +56,21 @@ const useRegistrationData = (regId: string|null, regNeeded = true) : [Registrati
 	const [error, setError] = useState(false)
 	const event = useEvent()
 
-	//window.localStorage.removeItem("iok_registration_data")
-	useEffect(() => {
+		useEffect(() => {
 		(async () => {
-			if (regId && String(regId) !== String(JSON.parse(window.localStorage.getItem("iok_registration_data") as string)?.id)) {
-				window.localStorage.removeItem("iok_registration_data")
-				const res = await fetch("https://wy8qg2hpoh.execute-api.eu-west-1.amazonaws.com/default/iokRegistrationData?id=" + regId + "&eventId=edunext")
+			if (regId && String(regId) !== String(JSON.parse(iokLocalStorage("get", "iok_registration_data") as string)?.id)) {
+				iokLocalStorage("remove","iok_registration_data")
+				const res = await fetch("https://wy8qg2hpoh.execute-api.eu-west-1.amazonaws.com/default/iokRegistrationData?id=" + regId + "&eventId=iok2023")
 				const data = await res.json()
 				if (data.id) {
 					setRegistrationData(data)
-					window.localStorage.setItem("iok_registration_data", JSON.stringify(data))
+					iokLocalStorage("set", "iok_registration_data", JSON.stringify(data))
 					window.history.replaceState(null, '', window.location.href.replace(window.location.search, ""))
 				} else {
 					setError(true)	
 				}
-			} else if (window.localStorage.getItem("iok_registration_data")) {
-				setRegistrationData(JSON.parse(window.localStorage.getItem("iok_registration_data") as string))
+			} else if (iokLocalStorage("get", "iok_registration_data")) {
+				setRegistrationData(JSON.parse(iokLocalStorage("get", "iok_registration_data") as string))
 			} else if (!regNeeded) {
 				
 
@@ -84,7 +84,7 @@ const useRegistrationData = (regId: string|null, regNeeded = true) : [Registrati
 					"onsite": false
 				}
 				setRegistrationData(data)
-				window.localStorage.setItem("iok_registration_data", JSON.stringify(data))
+				iokLocalStorage("set", "iok_registration_data", JSON.stringify(data))
 				window.history.replaceState(null, '', window.location.href.replace(window.location.search, ""))
 			}
 			setLoading(false)
@@ -324,7 +324,7 @@ export const StoreProvider = (props: { children: React.ReactElement }) => {
 	const [pageTitle, setPageTitle] = useState("IOK 2022")
 
 	const regId = (new URLSearchParams(window.location.search)).get('q') || null
-	const [registration, registrationLoading, registrationError] = useRegistrationData(regId, false)
+	const [registration, registrationLoading, registrationError] = useRegistrationData(regId, true) // TODO: lambdaból jöjjön
 
 	const store:IStore = useMemo(() => ({
 		stages,

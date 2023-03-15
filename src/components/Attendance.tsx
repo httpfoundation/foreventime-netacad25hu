@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useRegistration } from '../Store'
 import { useDatoClient } from '../useQuery'
+import { iokLocalStorage } from "../utils"
 
 const attendanceIntervalMinutes = 5
 
@@ -16,7 +17,7 @@ export const Attendance = () => {
 	const sendAttendance = async () => {
 		//console.log("Skipping sending attendance")
 		//return
-		const attendanceId = window.localStorage.getItem('iok_attendance_id')
+		const attendanceId = iokLocalStorage("get", 'iok_attendance_id')
 		if (!registration?.id || !attendanceId)
 			return
 		if (attendanceId) {
@@ -46,7 +47,7 @@ export const Attendance = () => {
 				attendances: JSON.stringify([])
 			})
 			console.log("Created attendance")
-			window.localStorage.setItem("iok_attendance_id", res.id)
+			iokLocalStorage("set", "iok_attendance_id", res.id)
 		} catch (e) {
 			if ((e as any).message.includes("VALIDATION_UNIQUE")) {
 				console.log("Attendance already exists")
@@ -64,7 +65,7 @@ export const Attendance = () => {
 					}
 				})
 				if (attendances.length) {
-					window.localStorage.setItem("iok_attendance_id", attendances[0].id)
+					iokLocalStorage("set", "iok_attendance_id", attendances[0].id)
 				}
 			} else {
 				console.error("Failed to create attendance", e)

@@ -7,6 +7,7 @@ import { StructuredText } from "react-datocms"
 import { useLiveStaticElements, usePresident, useRegistration } from "../Store"
 import {Home as HomeIcon, PermDeviceInformation as InformationIcon } from '@mui/icons-material'
 import { Link } from "react-router-dom"
+import { iokLocalStorage } from "../utils"
 
 const ChairmanImage = styled('img')`
 	width: 100%;
@@ -33,7 +34,7 @@ const Welcome = () => {
     const {welcome} = useLiveStaticElements()
 	const [registration, loading] = useRegistration()
 	const chairman = usePresident() 
-    window.localStorage.setItem("welcome", "true") 
+    iokLocalStorage("set", "welcome", "true") 
 	return (
  		<PageContainer container>
             <PageTitle>Köszöntő</PageTitle>
