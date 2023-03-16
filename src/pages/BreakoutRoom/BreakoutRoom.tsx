@@ -34,7 +34,7 @@ const BreakoutRoom = () => {
 	const {iokCafe: iokCafeInfoText} = useLiveStaticElements()
 	const {iokCafeHandout} = useLiveStaticElements()
 	//const [rooms, setRooms] = useState<WebexRoom[]>([])
-	const rooms = useBreakoutRooms()
+	const rooms = useBreakoutRooms().filter(room => room.enabled)
 	const [error, setError] = useState(false)
 	const [selectedRoom, setSelectedRoom] = useState<DatoBreakoutRoom|null>(null)
 	const [meetingDestination, setMeetingDestination] = useState<string|null>(null)
@@ -95,6 +95,13 @@ const BreakoutRoom = () => {
 	useEffect(() => {
 		if (!location.pathname.includes("webex")) setMeetingDestination(null)
 	}, [location.pathname])
+
+/* 	useEffect(() => {
+		if (rooms.length===1) {
+			setSelectedRoom(rooms[0])
+			navigate("/iok-cafe/webex")
+		}
+	}, [rooms]) */
 
 	const iokCafeImages = [iokCafe0, iokCafe1, iokCafe2, iokCafe3]
 

@@ -12,6 +12,7 @@ import { useSponsorCategories } from "../../Store"
 
 const Sponsors = () => {
 	const sponsorCategories = useSponsorCategories()
+	console.log({sponsorCategories})
 	
 	return (
 		<PageContainer>
@@ -63,8 +64,8 @@ const Sponsors = () => {
 					 */}
 					{sponsorCategories && sponsorCategories.map((category, index) => (
 						<>
-							<Typography variant="h2" sx={{textAlign:"center", mb:4, mt:4,}}>{category.name}</Typography>
-							<ul className="logo-gallery" style={{
+							<Typography variant="h2" color={theme => theme.palette.grey[400]} sx={{textAlign:"center", mb:4, mt:4}}>{category.name}</Typography>
+							<ul style={{
 								  display: "flex",
 								  flexWrap: "wrap",
 								  justifyContent: "center",
@@ -89,14 +90,15 @@ const Sponsors = () => {
 
 const Sponsor = (props : {link: string, image: string, name?: string}) => {
 	return (
-		<div className="sponsor">
+		<div style={{textAlign: "center"}}>
 			<a href={props.link} target="_blank" rel="noopener noreferrer"  >
 					<img src={props.image} alt={props.name} {...props} style={{
-						  objectFit: "cover",
-						  width: "100%",
+						  
+						  
 						  height: "100%",
 						  verticalAlign: "middle",
-						  borderRadius: "5px"
+						  borderRadius: "5px",
+						  maxHeight: "100px",
 					}}/>
 			</a>
 		</div>

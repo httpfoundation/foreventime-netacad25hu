@@ -23,7 +23,7 @@ type DividerMenuItem = {
 }
 
 const Header = () => {
-	const isInfoButtonVisible = false
+	const isInfoButtonVisible = true
 	const [drawerOpen, setDrawerOpen] = useState(false)
 	const [registration, loading] = useRegistration()
 	const stages = useStages()
@@ -56,8 +56,15 @@ const Header = () => {
 	useEffect(() => setDrawerOpen(false), [location.pathname])
 
 	return (<>
-		<Drawer anchor="right" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
-			<Box sx={{ width: 370, pt: '64px', maxWidth: 'calc(100vw - 20px)' }} role="presentation">
+	
+
+		<Drawer 
+			anchor="right" 
+			open={drawerOpen}  
+			onClose={() => setDrawerOpen(false)} 
+			PaperProps={{ sx: { bgcolor: "primary.dark" } }}
+		>
+			<Box sx={{ width: 370, pt: '64px', maxWidth: 'calc(100vw - 20px)', backgroundColor: "primary.main"}} role="presentation">
 				<List>
 					{menuItems.map((menuItem, index) => {
 
@@ -81,6 +88,7 @@ const Header = () => {
 				</List>
 			</Box>
 		</Drawer>
+
 		
 		<AppBar position="fixed" color="primary" sx={{
 			zIndex: theme => theme.zIndex.drawer + 1

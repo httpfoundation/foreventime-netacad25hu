@@ -77,6 +77,7 @@ const Message = (props: {message?: DatoMessage, notification?: boolean, onHide?:
 const MessageBoard = () => {
 
 	const messages = useMessages()
+	console.log({messages})
 
 	useEffect(() => {
 		iokLocalStorage("set", 'readMessages', JSON.stringify(messages.map(m => Number(m.id))))

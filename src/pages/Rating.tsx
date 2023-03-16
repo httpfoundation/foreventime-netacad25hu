@@ -7,7 +7,7 @@ import { Box } from "@mui/system"
 import { Star as StarFilled, StarOutline as Star } from "@mui/icons-material"
 import { useEffect, useMemo, useState } from "react"
 import { useDatoClient } from "../useQuery"
-//import recepcio from "../assets/img/recepcio.png";
+import imageOnTop from "../assets/img/itmp-1.png";
 import edunextImg from "../assets/img/edunext_stage_image.png"
 
 
@@ -163,7 +163,7 @@ const Rating = () => {
 					<Typography variant="h6" fontWeight={700} align="center" sx={{mt: 0.5}}>
 						Köszönjük, hogy értékelted a konferenciát!
 					</Typography>
-					<img src={edunextImg} style={{width: '300px', margin: '30px 0'}} />
+					<img src={imageOnTop} style={{width: '300px', margin: '30px 0'}} />
 				</Paper>	
 			</Box>}
 			{ !stages.length ? null : (

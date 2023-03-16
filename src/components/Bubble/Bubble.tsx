@@ -140,7 +140,7 @@ const BubbleWrapper = styled("div",
 			...bubbleWrapperProps,
 			"&:hover": {
 				transform: "scale(1.1)",
-				boxShadow: '0 .2rem 1.5rem rgba(0,0,0,.15)!important'
+				boxShadow: '0 .2rem 1.5rem rgba(0,0,0,.15)!important',
 			},
 			boxShadow: '0 .5rem 1rem rgba(0,0,0,.15)!important'
 		}
@@ -168,7 +168,7 @@ const BubbleCaption = styled(Typography)
 		textTransform: "none", 
 		margin:"auto", 
 		width:"85%", 
-		marginLeft: "-6px"
+		marginLeft: "8px"
 	
 	}
 ))
@@ -178,7 +178,7 @@ const BubbleImage = styled("img", {shouldForwardProp: (prop) => prop!=='width' &
 		if (width) return width
 		else return (
 			{
-				width: (size==="xl") ? "140px" : (size==="lg") ? "100px" : "100%",
+				width: (size==="xl") ? "130px" : (size==="lg") ? "100px" : "100%",
 				marginLeft: "-18px"
 			}
 		)	

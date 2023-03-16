@@ -75,6 +75,7 @@ export type DatoBreakoutRoom = {
 	title: string
 	slug: string
 	roomId?: string
+	enabled: boolean
 }
 
 export type DatoStaff = {

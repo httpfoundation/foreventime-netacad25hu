@@ -11,19 +11,25 @@ const educationnextCreativeDarkGreen = "#7e923f"
 const educationnextCreativeDarkBlue = "#42518a"
 const educationnextCreativeLightGreen = "#edffcf" */
 
-const iokBlue1 = "#14475C"
-const iokLightBlue = "#d6f4f5"
-const iokDarkBlue = "#002939"
 const iokBlue = "#003b52"
+const iokBlue1 = "#14475C"
+const iokDarkBlue = "#002939"
+const iokLightBlue = "#d6f4f5"
+
 const iokAmber = "#f18c4e"
 const iokLightAmber = "#fde9d1"
 const iokDarkAmber = "#a86236"
+
 const iokWhite = "rgba(255, 255, 255, 0.87)"
-const iokBlueGrey = "#578392"
-const iokCyan = "#48abb9"
-const iokGrey = "#9e9e9e"
-const iokInfo = "#336274"
 const iokBlack ="rgba(0, 0, 0, 0.87)"
+
+const iokInfo = "#336274"
+
+const iokCyan = "#48abb9"
+
+const iokGrey = "#9e9e9e"
+const iokLightGrey = "#cecece"
+const iokBlueGrey = "#578392"
 
 const colorPrimaryBackground = iokBlue
 const colorPrimaryDark = iokDarkBlue
@@ -42,6 +48,8 @@ const colorInfo = iokInfo
 
 const colorBlack = iokBlack
 const colorWhite = iokWhite
+const colorGrey = iokGrey
+const colorLightGrey = iokLightGrey
 
 
 /* const colorDark = iokDarkBlue //iokAmber // iokDarkBlue
@@ -147,8 +155,26 @@ let theme = createTheme({
 				},
 			},
 		},
-		
-
+		MuiTextField: {
+			styleOverrides: {
+				root: {
+					borderColor: colorLightGrey,
+					borderStyle: "solid",
+					borderWidth: "1px",
+					padding: "0.5rem",
+					textArea: {
+						color: colorBlack,
+					}
+				},
+				},
+			},
+		MuiDrawer: {
+			styleOverrides: {
+				root: {paper: {backgroundColor: colorPrimaryBackground}},
+					
+			},
+				},
+			
 	}
 })
 

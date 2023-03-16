@@ -153,8 +153,9 @@ export const StoreProvider = (props: { children: React.ReactElement }) => {
 				}
 				title
 				roomId
+				enabled
 			}
-			allSponsorCategories(, first: 100 ) {
+			allSponsorCategories(first: 100 ) {
                 name
                 sponsor {
                     name
@@ -305,6 +306,7 @@ export const StoreProvider = (props: { children: React.ReactElement }) => {
 		allDashboardElements: dashboardElements,
 		allSponsorCategories: sponsorCategories
 	} 	= data
+	console.log({data})
 
 	const talks = useMemo(() => {
 		const talks: DatoTalk[] = []

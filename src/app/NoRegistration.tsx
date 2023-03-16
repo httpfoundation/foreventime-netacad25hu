@@ -1,7 +1,7 @@
 import { Button, Divider, TextField, Tooltip, Typography, Paper, Alert, AlertTitle, Box, Grow, Zoom } from '@mui/material'
 import React, { useState } from 'react'
 import { Login as LoginIcon } from '@mui/icons-material'
-import edunext from '../assets/img/edunext_stage_image.png'
+import imageOnTop from '../assets/img/itmp-1.png'
 import { useRegistration } from '../Store'
 
 export const NoRegistration = () => {
@@ -14,13 +14,14 @@ export const NoRegistration = () => {
 		window.location.href = window.location.origin + window.location.pathname + "?q=" + id
 	}
 
-	return <Box sx={{height: '100%', overflowY: 'auto', p: {xs: 2, md: 6}}}>
+	return <Box sx={{height: '100%', overflowY: 'auto', backgroundColor: "primary.main", p: {xs: 2, md: 6}}}>
 		<Paper
 			elevation={10} 
+			
 			sx={{ 
 				margin: 'auto', 
-				bgcolor: 'info.dark', 
-				p: 4, color: 'secondary.dark', 
+				bgcolor: 'primary.main', 
+				p: 4, color: 'text.primary', 
 				borderRadius: '8px', 
 				textAlign: 'center', 
 				width: '600px', 
@@ -29,18 +30,18 @@ export const NoRegistration = () => {
 			}}
 		>
 			{error && <Zoom in><Alert severity="error" sx={{ mb: 4 , textAlign: 'left', pr: 3 }} >
-				<AlertTitle sx={{color: '#F16B68', pt: '3px', fontWeight: 700, textAlign: 'left'}}>Érvénytelen kód</AlertTitle>
+				<AlertTitle sx={{pt: '3px', fontWeight: 700, textAlign: 'left'}}>Érvénytelen kód</AlertTitle>
 				A link, amire kattintottál, vagy az általad megadott kód érvénytelen.
 				<br/>
 				Amennyiben már regisztráltál, kattints az e-mailben kapott linkre, vagy add meg az oldal alján az egyedi kódodat.
 				<br />
 				Ha még nem regisztráltál, akkor kattints az alábbi "Regisztráció" gombra.
 			</Alert></Zoom> }
-			<Typography variant="h5" sx={{ fontWeight: 'bold', mb: 4 }}>
+			<Typography variant="h5" sx={{ fontWeight: 'bold', mb: 4 }} >
 				Az IOK 2023 konferencián való részvétel regisztrációhoz kötött!!
 			</Typography>
-			<img src={edunext} alt="" style={{ width: '200px', maxWidth: '70%' }} />
-			<Typography variant="body1" component="p" sx={{  my: 1, color: 'secondary.dark' }}>
+			<img src={imageOnTop} alt="" style={{ width: '200px', maxWidth: '70%' }} />
+			<Typography variant="body1" component="p" sx={{  my: 1 }}>
 				Regisztrálj, és emailben megkapod a bejelentkezéshez használható személyes linkedet és a személyes kódodat!
 			</Typography>
 
@@ -49,7 +50,7 @@ export const NoRegistration = () => {
 				color="secondary"
 				sx={{ mt: 2 }} 
 				size="large" 
-				href="https://iok2023.httpf.hu/">
+				href="https://iok2023.http-alapitvany.hu/">
 					Regisztráció
 			</Button>
 
