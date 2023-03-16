@@ -23,14 +23,8 @@ type WebexWidgetProps = {
 export const WebexWidget = (props: WebexWidgetProps) => {
 
 	const inMeetingControls: MeetingControl[] = [MeetingControl.EXIT, MeetingControl.AUDIO, MeetingControl.VIDEO, MeetingControl.SETTINGS]
-	//const outOfMeetingControls: MeetingControl[] = [MeetingControl.AUDIO, MeetingControl.VIDEO, MeetingControl.SETTINGS, MeetingControl.JOIN]
 	const outOfMeetingControls: MeetingControl[] = [MeetingControl.SETTINGS, MeetingControl.AUDIO, MeetingControl.VIDEO, MeetingControl.JOIN]
 	const breakoutRooms = useBreakoutRooms()
-	//const {meetingDestination }= breakoutRooms[0] ?? {meetingDestination: ""}
-	//console.log("meetingDestination", meetingDestination)
-
-	//alert(meetingDestination)
-
 	const [registration] = useRegistration()
 
 	if (!props.destination) return null

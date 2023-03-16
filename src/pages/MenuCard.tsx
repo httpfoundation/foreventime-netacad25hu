@@ -8,9 +8,6 @@ import { styled } from "@mui/system"
 
 const ManuCard = () => {
     const {menu: menuCard, menuImage} = useLiveStaticElements()
-	console.log("menuImage", menuImage)
-
-
 	return (
  		<PageContainer container>
 			 <Box sx={{textAlign: "center"}}>

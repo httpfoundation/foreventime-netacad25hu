@@ -78,7 +78,6 @@ const Rating = () => {
 				setLoading(false)
 				setRatingsSent(res.length > 0)
 				if (res.length) {
-					//console.log("Loaded ratings", JSON.parse(res[0].ratings))
 					setRatings(JSON.parse(res[0].ratings))
 					setComment(res[0].comment)
 					setRecommendedTopic(res[0].recommendedTopic)
@@ -89,7 +88,6 @@ const Rating = () => {
 
 	const sendRating = async (submit = true, __ratings: Record<number, number|null>|null = null) => {
 		let _ratings = __ratings || ratings
-		//console.log("Send rating", Object.fromEntries(Object.entries(_ratings).filter(([_, v]) => v !== null)))
 		const data = {
 			registration: String(registration?.id) ?? null,
 			ratings: JSON.stringify(Object.fromEntries(Object.entries(_ratings).filter(([_, v]) => v !== null))),
@@ -129,8 +127,6 @@ const Rating = () => {
 /* 	{id: "elegedett-menu", question: "Mennyire vagy elégedett a menüvel?", type: "onsite"},
 	{id: "elegedett-app", question: "Mennyire vagy elégedett az IOK VKK platform által nyújtott szolgáltatásokkal?", type: "all"},
  */	
-	//const stage0 = shownStages[0]
-	//console.log("stage0.schedule?.slice(1)", stage0.schedule?.slice(1))
 	
 	return (
  		<PageContainer container>

@@ -1,7 +1,6 @@
 export const iokLocalStorage = (action: "get"|"set"|"remove", key: string, value?: string|null) : string|null => {
 	const eventId = process.env.REACT_APP_EVENT_ID || "iok"
 	const eventKey = key ? key + "_" + eventId : eventId
-    console.log("localStorage", eventId, action, key, eventKey)
  	if (action === "get") {
 		return window.localStorage.getItem(eventKey)
 	} else if (action === "set") {

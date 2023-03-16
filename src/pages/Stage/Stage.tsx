@@ -31,7 +31,6 @@ const NoStream = () => {
 }
 
 const embedDomain = window.localStorage.dev === "true" ? "localhost" : window.origin.replace("https://", "")
-console.log(embedDomain)
 
 const VideoContainer = styled('div')(({theme}) => `
 	background-color: #000;
@@ -69,8 +68,7 @@ const StagePage = () => {
 
 	
 	const selectedStream = streams?.find(stream => stream.id === selectedStreamId)
-	console.log({selectedStream})
-	
+		
 	const [selectedTab, setSelectedTab] = useState<number>(0)
 
 	const {palette} = useTheme()

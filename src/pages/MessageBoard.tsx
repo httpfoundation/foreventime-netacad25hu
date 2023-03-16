@@ -79,7 +79,6 @@ const Message = (props: {message?: DatoMessage, notification?: boolean, onHide?:
 const MessageBoard = () => {
 
 	const messages = useMessages()
-	console.log({messages})
 
 	useEffect(() => {
 		iokLocalStorage("set", 'readMessages', JSON.stringify(messages.map(m => Number(m.id))))
@@ -129,7 +128,6 @@ export const MessageNotifications = () => {
 		{unreadMessages.slice(0,2).map((message, index) => <Message key={message.id} message={message} notification onHide={(id) => {
 			if (!readMessages.includes(id)) {
 				iokLocalStorage("set", 'readMessages', JSON.stringify([...readMessages, id]))
-				//console.log("Read", id)
 				setReadMessages([...readMessages, id])
 			}
 		}} />)}

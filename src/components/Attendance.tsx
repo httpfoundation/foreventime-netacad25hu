@@ -15,8 +15,6 @@ export const Attendance = () => {
 	const [lastPath, setLastPath] = useState<string>(location.pathname)
 
 	const sendAttendance = async () => {
-		//console.log("Skipping sending attendance")
-		//return
 		const attendanceId = iokLocalStorage("get", 'iok_attendance_id')
 		if (!registration?.id || !attendanceId)
 			return
@@ -27,7 +25,6 @@ export const Attendance = () => {
 					await client?.item.update(attendanceId as string, {
 						attendances: JSON.stringify([...(JSON.parse(attendance.attendances)), { date: new Date(), path: window.location.pathname }])
 					})
-					console.log("Sent attendance")
 				}
 			} catch (e) {
 				console.error("Failed to send attendance", e)
@@ -36,8 +33,6 @@ export const Attendance = () => {
 	}
 
 	const createAttendance = async () => {
-		//console.log("Skipping creating attendance")
-		//return null
 		if (!registration?.id)
 			return
 		try {
@@ -46,7 +41,6 @@ export const Attendance = () => {
 				registration: String(registration?.id) ?? null,
 				attendances: JSON.stringify([])
 			})
-			console.log("Created attendance")
 			iokLocalStorage("set", "iok_attendance_id", res.id)
 		} catch (e) {
 			if ((e as any).message.includes("VALIDATION_UNIQUE")) {
