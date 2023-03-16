@@ -168,7 +168,7 @@ const BubbleCaption = styled(Typography)
 		textTransform: "none", 
 		margin:"auto", 
 		width:"85%", 
-		marginLeft: "8px"
+		marginLeft: "12px"
 	
 	}
 ))
@@ -178,8 +178,8 @@ const BubbleImage = styled("img", {shouldForwardProp: (prop) => prop!=='width' &
 		if (width) return width
 		else return (
 			{
-				width: (size==="xl") ? "130px" : (size==="lg") ? "100px" : "100%",
-				marginLeft: "-18px"
+				width: (size==="xl") ? "140px" : (size==="lg") ? "100px" : "100%",
+				marginLeft: "-0px"
 			}
 		)	
 	})
