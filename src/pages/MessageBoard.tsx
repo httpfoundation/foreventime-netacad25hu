@@ -46,7 +46,7 @@ const Message = (props: {message?: DatoMessage, notification?: boolean, onHide?:
 	const AnimContainer = props.notification ? Slide : (props: {children: React.ReactElement, in?: boolean}) => props.children
 	return <AnimContainer in={isIn} direction="left"><MessageContainer notification={props.notification} elevation={3}>
 		
-		<CardContent sx={{position: 'relative'}}>
+		<CardContent sx={{position: 'relative', color: "text.secondary"}}>
 			{props.notification && <IconButton sx={{position: 'absolute', top: '10px', right: '0'}} onClick={() => {
 				if (props.onHide) props.onHide(Number(props.message?.id))
 			}}>
@@ -65,10 +65,12 @@ const Message = (props: {message?: DatoMessage, notification?: boolean, onHide?:
 				hour: '2-digit',
 				minute: '2-digit'
 			})} icon={<TimeIcon />} sx={{mb: 2}}/>}
-			<Typography variant="h4" fontWeight={700}>
+			<Typography variant="h4" fontWeight={700} >
 				{title}
 			</Typography>
+			<Typography variant="body1" fontWeight={400} >
 			<StructuredText data={message} />
+			</Typography>
 		</CardContent>
 	</MessageContainer>
 	</AnimContainer>
@@ -122,6 +124,7 @@ export const MessageNotifications = () => {
 			bottom: '0px',
 			width: '500px',
 			maxWidth: '90vw',
+			color: "text.primary"
 		}}>	
 		{unreadMessages.slice(0,2).map((message, index) => <Message key={message.id} message={message} notification onHide={(id) => {
 			if (!readMessages.includes(id)) {

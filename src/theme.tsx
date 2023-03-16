@@ -150,8 +150,10 @@ let theme = createTheme({
 			styleOverrides: {
 				root: {
 					fieldset: 
-						{borderColor: colorWhite},
+						{borderColor: colorWhite,
+							},
 					svg: {color: colorWhite},
+					
 				},
 			},
 		},
@@ -160,7 +162,7 @@ let theme = createTheme({
 				root: {
 					borderColor: colorLightGrey,
 					borderStyle: "solid",
-					borderWidth: "1px",
+					borderWidth: "0px",
 					padding: "0.5rem",
 					textArea: {
 						color: colorBlack,

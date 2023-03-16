@@ -1,5 +1,6 @@
 import { TextField, FormControlLabel, Checkbox, Button, InputLabel, Select, MenuItem, FormControl, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from "@mui/material";
 import { useEffect, useMemo, useState } from "react";
+import { useTheme } from "@mui/material/styles"
 import { useRegistration, useStore } from "../../Store";
 import { Box } from "@mui/system";
 import { DatoTalk } from "../../types";
@@ -23,6 +24,8 @@ export const Questions = (props: { schedule?: DatoTalk[]; stageId?: number; }) =
 	const client = useDatoClient();
 
 	const [registration] = useRegistration();
+	const {palette} = useTheme();
+	
 
 
 
@@ -81,7 +84,19 @@ export const Questions = (props: { schedule?: DatoTalk[]; stageId?: number; }) =
 						{speakers.map(speaker => <MenuItem key={speaker.id} value={speaker.id}>{speaker.name}</MenuItem>)}
 					</Select>
 				</FormControl>
-				<TextField required fullWidth multiline minRows={6} maxRows={10} label="Kérdés" color="secondary" sx={{ mt: 2 }} value={content} onChange={e => setContent(e.target.value)} />
+				<TextField 
+					required 
+					fullWidth 
+					multiline 
+					minRows={6} 
+					maxRows={10} 
+					label="Kérdés" 
+					color="secondary" 
+					sx={{ mt: 2, p:0, color: "white" }} 
+					value={content} 
+					onChange={e => setContent(e.target.value)} 
+					inputProps={{style: {color: palette.text.primary, padding:"5px"}} }
+				/>
 
 				<Button variant="contained" color="secondary" sx={{ mt: 2 }} type="submit" disabled={loading || !targetTalk || !content}>Küldés</Button>
 			</form>

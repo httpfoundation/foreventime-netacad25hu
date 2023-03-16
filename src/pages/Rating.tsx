@@ -200,10 +200,12 @@ const Rating = () => {
 						minRows={8} 
 						color="secondary" 
 						placeholder="Ide írhatod témajavaslataidat"
-						sx = {{"& .MuiInputBase-root": {color: 'text.secondary'}}}
+						sx = {{"& .MuiOutlinedInput-root": {color: 'text.secondary', borderColor: "lightgrey", borderStyle: "solid", borderWidth: "1px", }}}
 					/>
 					<Typography variant="h6" fontSize={'0.8rem'} align="left" fontWeight={600} sx={{mt:2}}>Megjegyzés, észrevétel, javaslat a konferenciával kapcsolatban:</Typography>
-					<TextField value={comment} onChange={e=>setComment(e.target.value)} multiline fullWidth minRows={8} color="secondary" placeholder="Ide írhatod egyéb javaslataidat, észrevételeidet és megjegyzéseidet"/>
+					<TextField value={comment} onChange={e=>setComment(e.target.value)} multiline fullWidth minRows={8} color="secondary" placeholder="Ide írhatod egyéb javaslataidat, észrevételeidet és megjegyzéseidet"
+						sx = {{"& .MuiOutlinedInput-root": {color: 'text.secondary', borderColor: "lightgrey", borderStyle: "solid", borderWidth: "1px", }}}
+					/>
 				</Paper>
 
 				<Button size="large" variant="contained" fullWidth color="secondary" onClick={() => sendRating()}>
