@@ -322,7 +322,7 @@ export const StoreProvider = (props: { children: React.ReactElement }) => {
 		return talks
 	}, [stages])
 
-	const [pageTitle, setPageTitle] = useState("IOK 2022")
+	const [pageTitle, setPageTitle] = useState("IOK 2023")
 
 	const regId = (new URLSearchParams(window.location.search)).get('q') || null
 	const [registration, registrationLoading, registrationError] = useRegistrationData(regId, true) // TODO: lambdaból jöjjön
