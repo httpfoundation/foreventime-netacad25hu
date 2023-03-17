@@ -11,7 +11,6 @@ const Home = () => {
         [...dashboardElements], 
         [dashboardElements]
     )
-    console.log("homeDashboardItems", homeDashboardItems)
    return (
 
             <PageContainer container>

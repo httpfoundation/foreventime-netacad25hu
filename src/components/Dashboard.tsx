@@ -38,7 +38,6 @@ interface DashboardItemProps {
 
 const Dashboard = (props : {items: DashboardElement[]}) => {
     const {items} = props
-	console.log("items", items )
     const theme = useTheme();
     const upperThanLg = useMediaQuery(theme.breakpoints.up("lg"))
 	const upperThanMd = useMediaQuery(theme.breakpoints.up("md"))

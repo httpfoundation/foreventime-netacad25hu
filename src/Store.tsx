@@ -306,7 +306,6 @@ export const StoreProvider = (props: { children: React.ReactElement }) => {
 		allDashboardElements: dashboardElements,
 		allSponsorCategories: sponsorCategories
 	} 	= data
-	console.log({data})
 
 	const talks = useMemo(() => {
 		const talks: DatoTalk[] = []

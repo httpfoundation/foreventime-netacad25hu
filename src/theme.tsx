@@ -176,7 +176,13 @@ let theme = createTheme({
 					
 			},
 				},
-			
+		MuiDialogTitle: {
+			styleOverrides: {
+				root: {
+					color: colorBlack,
+				}
+			}
+		}
 	}
 })
 

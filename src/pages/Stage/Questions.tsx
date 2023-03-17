@@ -12,7 +12,7 @@ export const Questions = (props: { schedule?: DatoTalk[]; stageId?: number; }) =
 
 	const [anonymus, setAnonymus] = useState(false);
 	const [targetTalk, setTargetTalk] = useState<number>(0);
-	const [targetSpeaker, setTargetSpeaker] = useState<number>(0);
+	const [targetSpeaker, setTargetSpeaker] = useState<number>(-1);
 	const [content, setContent] = useState('');
 	const [loading, setLoading] = useState(false);
 	const [success, setSuccess] = useState(false);
@@ -34,7 +34,7 @@ export const Questions = (props: { schedule?: DatoTalk[]; stageId?: number; }) =
 		const data = {
 			stage: String(props.stageId),
 			talk: String(targetTalk),
-			speaker: String(targetSpeaker) || null,
+			speaker: targetSpeaker !== -1 ? String(targetSpeaker) : null,
 			content,
 			registration: anonymus ? null : String(registration?.id) ?? null
 		};
@@ -45,7 +45,7 @@ export const Questions = (props: { schedule?: DatoTalk[]; stageId?: number; }) =
 				...data
 			});
 			setContent('');
-			setTargetSpeaker(0);
+			setTargetSpeaker(-1);
 			setTargetTalk(0);
 			setSuccess(true);
 		} catch (e) {
