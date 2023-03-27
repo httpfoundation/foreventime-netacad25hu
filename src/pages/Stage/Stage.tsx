@@ -53,12 +53,17 @@ const StagePage = () => {
 	const streams = useStreams()
 
 	const location = useLocation()
+	const streamIdFromUrl = (location.state as any)?.streamId || null
 
-	const [selectedStreamId, setSelectedStreamId] = useState<number | null>((location.state as any)?.streamId || null)
+	const [selectedStreamId, setSelectedStreamId] = useState<number | null>(streamIdFromUrl)
 	
 	const fisrtStageLiveStream = stage?.streams?.find(stream => stream.live)
 	const {streams: stageStreams} = stage || {}
+
 	
+/*    console.log({selectedStreamId:selectedStreamId})
+   console.log("stage.sterams", stage.streams) */
+
 
 
 /* 	useEffect(() => {
@@ -78,18 +83,14 @@ const StagePage = () => {
 			setSelectedStreamId(fisrtStageLiveStream.id)
 		} else {
 			// Stage has not live stream
-			setSelectedStreamId(stageStreams?.length ? stageStreams[0].id : null)
+			if (!streamIdFromUrl) setSelectedStreamId(stageStreams?.length ? stageStreams[0].id : null)
 		}
-	}, [stageSlug, fisrtStageLiveStream, stageStreams])
+	}, [stageSlug, fisrtStageLiveStream, stageStreams, streamIdFromUrl])
 
 	
 	const selectedStream = streams?.find(stream => stream.id === selectedStreamId)
+	/* console.log({selectedStream}) */	
 		
-/* 	console.log({selectedStreamId:selectedStreamId})
-	console.log("stage.sterams", stage.streams)
-	console.log({selectedStream})
-	console.log({selectedStreamId: selectedStreamId})
-	console.log({selectedStream}) */
 
 	const [selectedTab, setSelectedTab] = useState<number>(0)
 
