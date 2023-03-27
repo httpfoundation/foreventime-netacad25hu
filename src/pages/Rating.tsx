@@ -169,7 +169,7 @@ const Rating = () => {
 						return (<Paper sx={{px: 2, mb: 2, pb: 1, pt: 2, color: "text.secondary"}} key={index}>
 							<Typography variant="h6" fontWeight={700} align="center" sx={{mt: 0.5}}>{stage.pageTitle}</Typography>
 							<Divider sx={{mt: 2, mb: 4}} />
-							{stage.schedule?.slice(2).map((talk, index) => <TalkRate rating={ratings[talk.id]} setRating={r => {
+							{stage.schedule?.map((talk, index) => <TalkRate rating={ratings[talk.id]} setRating={r => {
 								const _ratings = {...ratings, [talk.id]: r}
 								//iokLocalStorage("set", "ratings", JSON.stringify(_ratings))
 								setRatings(_ratings)
