@@ -118,6 +118,8 @@ export const StoreProvider = (props: { children: React.ReactElement }) => {
 						image {
 							url
 						}
+						recordingLabel
+						liveLabel
 					}
 				}
 				schedule {

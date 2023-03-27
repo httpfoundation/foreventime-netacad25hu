@@ -56,19 +56,41 @@ const StagePage = () => {
 
 	const [selectedStreamId, setSelectedStreamId] = useState<number | null>((location.state as any)?.streamId || null)
 	
+	const fisrtStageLiveStream = stage?.streams?.find(stream => stream.live)
+	const {streams: stageStreams} = stage || {}
 	
-	
-	useEffect(() => {
+
+
+/* 	useEffect(() => {
 			// TODO: Keep language preference
 		
-		if (!stage?.streams?.find(stream => stream.id === selectedStreamId)) setSelectedStreamId(stage?.streams?.length ? stage?.streams[0].id : null)
-		
+			//if (!stage?.streams?.find(stream => stream.id === selectedStreamId)) setSelectedStreamId(stage?.streams?.length ? stage?.streams[0].id : null)
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [stage])
+	}, [stage]) */
+
+
+	//Switch to a stage
+	// NEED TO TEST AND REVIEW NEXT TIME!!!!
+	useEffect(() => {
+		// Stage has live stream
+		if (fisrtStageLiveStream) {
+			// Stage has live stream
+			setSelectedStreamId(fisrtStageLiveStream.id)
+		} else {
+			// Stage has not live stream
+			setSelectedStreamId(stageStreams?.length ? stageStreams[0].id : null)
+		}
+	}, [stageSlug, fisrtStageLiveStream, stageStreams])
 
 	
 	const selectedStream = streams?.find(stream => stream.id === selectedStreamId)
 		
+/* 	console.log({selectedStreamId:selectedStreamId})
+	console.log("stage.sterams", stage.streams)
+	console.log({selectedStream})
+	console.log({selectedStreamId: selectedStreamId})
+	console.log({selectedStream}) */
+
 	const [selectedTab, setSelectedTab] = useState<number>(0)
 
 	const {palette} = useTheme()
@@ -87,6 +109,7 @@ const StagePage = () => {
 	useEffect(() => setSelectedTab(0), [stageSlug])
 
 	const [openScheduleItem, setOpenScheduleItem] = useState<number | null>((location.state as any)?.openScheduleItem || null)
+	
 
 	return (
 		<>
@@ -122,7 +145,7 @@ const StagePage = () => {
 									<LanguageSelect
 										value={selectedStream?.language.id ?? null}
 										onChange={(languageId) => setSelectedStreamId(stage?.streams?.find(stream => stream.language.id === languageId)?.id ?? null)}
-										options={stage?.streams?.map(stream => stream.language) ?? []}
+										options={stage?.streams?.map(stream => {return {language: stream.language, live: stream.live}}) ?? []}
 									/>
 								</div>
 								<Tabs textColor="secondary" indicatorColor="secondary" value={selectedTab} onChange={(e, v) => setSelectedTab(v)} centered sx={{"& button": {color:"text.primary"}, mt: stage?.streams?.length ? 1 : 0, color:"text.secondary"}}>

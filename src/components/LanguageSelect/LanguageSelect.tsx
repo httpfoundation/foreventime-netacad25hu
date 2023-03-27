@@ -4,12 +4,13 @@ import { Done as DoneIcon, Language as LanguageIcon } from "@mui/icons-material"
 
 
 const LanguageSelect = (props: {
-	options?: DatoLanguage[]
+	options?: {language: DatoLanguage, live: boolean}[] | []
 	value: number | null
+	live?: boolean
 	onChange: (language: number | null) => void
 }) => {
 
-	const { options, value, onChange } = props
+	const { options, value, onChange, live } = props
 
 	if (options && !options.length) return null
 
@@ -18,16 +19,16 @@ const LanguageSelect = (props: {
 	return (
 		<>
 			{options?.map(option => <Chip
-					sx={{mr: 1, fontSize: '0.8rem', fontFamily: 'sans-serif', fontWeight: value === option.id ? '700' : '600', borderWidth:0}}
-					variant={value === option.id ? "filled" : "outlined"}
-					avatar={option.image?.url ? <Avatar alt={option.name} src={option.image?.url} /> : undefined}
+					sx={{mr: 1, fontSize: '0.8rem', fontFamily: 'sans-serif', fontWeight: value === option.language.id ? '700' : '600', borderWidth:0}}
+					variant={value === option.language.id ? "filled" : "outlined"}
+					avatar={option.language.image?.url ? <Avatar alt={option.language.name} src={option.language.image?.url} /> : undefined}
 					color="secondary" 
-					key={option.id}
-					label={option.name}
-					icon={option.image?.url ? undefined : <LanguageIcon />}
-					onClick={() => onChange(option.id)}
+					key={option.language.id}
+					label={option.language.name + ' (' + (option.live ? option.language.liveLabel : option.language.recordingLabel) + ')'}
+					icon={option.language.image?.url ? undefined : <LanguageIcon />}
+					onClick={() => onChange(option.language.id)}
 					deleteIcon={<DoneIcon sx={{color: "grey.300"}}/>}
-					onDelete={value === option.id && options.length > 1 ? () => {} : undefined}
+					onDelete={value === option.language.id && options.length > 1 ? () => {} : undefined}
 				/>)}
 		</>
 	)
@@ -46,7 +47,7 @@ const LanguageSelect = (props: {
 			)}
 		>
 			{options?.map(option => (
-				<MenuItem key={option.id} value={option.id}>{option.name}</MenuItem>
+				<MenuItem key={option.language.id} value={option.language.id}>{option.language.name}</MenuItem>
 			))}
 		</Select>
 	)

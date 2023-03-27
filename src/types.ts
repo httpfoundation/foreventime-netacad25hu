@@ -37,6 +37,8 @@ export type DatoLanguage = {
 	image?: {
 		url: string
 	}
+	recordingLabel?: string
+	liveLabel?: string
 }
 
 export type DatoStream = {
