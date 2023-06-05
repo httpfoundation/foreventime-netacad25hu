@@ -29,7 +29,7 @@ export const Store = createContext<IStore>({
 	talks: [],
 	streams: [],
 	breakoutRooms: [],
-	pageTitle: "IOK 2023",
+	pageTitle: "NetAcad 25",
 	setPageTitle: (t: string) => {},
 	registration: null,
 	registrationLoading: true,
@@ -50,7 +50,7 @@ type RegistrationData = {
 	stage: number | null
 }
 
-const useRegistrationData = (regId: string|null, regNeeded = true) : [RegistrationData|null, boolean, boolean] => {
+const useRegistrationData = (regId: string|null, regNeeded = false) : [RegistrationData|null, boolean, boolean] => {
 	const [registrationData, setRegistrationData] = useState<RegistrationData|null>(null)
 	const [loading, setLoading] = useState(true)
 	const [error, setError] = useState(false)
@@ -60,7 +60,7 @@ const useRegistrationData = (regId: string|null, regNeeded = true) : [Registrati
 		(async () => {
 			if (regId && String(regId) !== String(JSON.parse(iokLocalStorage("get", "iok_registration_data") as string)?.id)) {
 				iokLocalStorage("remove","iok_registration_data")
-				const res = await fetch("https://wy8qg2hpoh.execute-api.eu-west-1.amazonaws.com/default/iokRegistrationData?id=" + regId + "&eventId=iok2023")
+				const res = await fetch("https://wy8qg2hpoh.execute-api.eu-west-1.amazonaws.com/default/iokRegistrationData?id=" + regId + "&eventId=netacad25")
 				const data = await res.json()
 				if (data.id) {
 					setRegistrationData(data)
@@ -78,7 +78,7 @@ const useRegistrationData = (regId: string|null, regNeeded = true) : [Registrati
 					"id": null,
 					"name": "Résztvevő",
 					"webex_access_token": null,
-					"dato_token": "5b4d0c68817732d4ac571d61e85fd7", // LiveVisitor token, EducationNext2022
+					"dato_token": "193f17db8b11471ea38999951c6a9c",//"5b4d0c68817732d4ac571d61e85fd7", // LiveVisitor token, EducationNext2022
 					//"dato_token": "86562f6d25113edf16c2608cedf976", // LiveVisitor token, IOK2022	
 					"stage": null,
 					"onsite": false
@@ -324,10 +324,10 @@ export const StoreProvider = (props: { children: React.ReactElement }) => {
 		return talks
 	}, [stages])
 
-	const [pageTitle, setPageTitle] = useState("IOK 2023")
+	const [pageTitle, setPageTitle] = useState("NetAcad 25")
 
 	const regId = (new URLSearchParams(window.location.search)).get('q') || null
-	const [registration, registrationLoading, registrationError] = useRegistrationData(regId, true) // TODO: lambdaból jöjjön
+	const [registration, registrationLoading, registrationError] = useRegistrationData(regId, false) // TODO: lambdaból jöjjön
 
 	const store:IStore = useMemo(() => ({
 		stages,

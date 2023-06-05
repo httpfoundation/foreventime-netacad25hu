@@ -5,7 +5,7 @@ import { Home as HomeIcon, Menu as MenuIcon, People as PeopleIcon, Coffee as Cof
 import React, { useEffect, useMemo, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useStages, usePageTitle, useRegistration } from "../Store"
-import iokLogo from "../assets/images/httpiok2023_logo_w-b-w_sm.png"
+import iokLogo from "../assets/images/netacad_logo.png"
 //import iokLogo from "../assets/images/iok2022_logo_w_httpw_sm.png"
 //import educationnextLogo from "../assets/images/educationnextlogo_inverz.png"
 import {styled} from "@mui/system"
@@ -46,7 +46,7 @@ const Header = () => {
 
 	const pageTitle = usePageTitle()
 	useEffect(() => {
-		document.title = pageTitle ? "IOK 2023 | " + pageTitle : "IOK 2023"
+		document.title = pageTitle ? "NetAcad 25 | " + pageTitle : "NetAcad 25"
 	}, [pageTitle])
 	
 	

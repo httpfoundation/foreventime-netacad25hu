@@ -7,7 +7,9 @@ import { useCallback, useEffect, useState } from "react"
 import { LanguageSelect, PageTitle } from "../../components"
 import { useLiveStaticElements, useStage, useStages, useStreams } from "../../Store"
 import { Box } from "@mui/system"
-import ItmpImg from "../../assets/img/itmp-1.png"
+//import ItmpImg from "../../assets/img/itmp-1.png"
+import ItmpImg from "../../assets/images/25yearsCard_Networking Academy.gif"
+
 import educationNextImage from "../../assets/img/edunext_stage_image.png"
 import { styled, useTheme } from '@mui/material/styles'
 import { PageHeaderTitle } from "../../components/PageContainer"

@@ -38,7 +38,7 @@ export const NoRegistration = () => {
 				Ha még nem regisztráltál, akkor kattints az alábbi "Regisztráció" gombra.
 			</Alert></Zoom> }
 			<Typography variant="h5" sx={{ fontWeight: 'bold', mb: 4 }} >
-				Az IOK 2023 konferencián való részvétel regisztrációhoz kötött!!
+				A NetAcad 25 ünnepi rendezványen való részvétel regisztrációhoz kötött!!
 			</Typography>
 			<img src={imageOnTop} alt="" style={{ width: '200px', maxWidth: '70%' }} />
 			<Typography variant="body1" component="p" sx={{  my: 1 }}>

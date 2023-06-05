@@ -11,10 +11,10 @@ const educationnextCreativeDarkGreen = "#7e923f"
 const educationnextCreativeDarkBlue = "#42518a"
 const educationnextCreativeLightGreen = "#edffcf" */
 
-const iokBlue = "#003b52"
+const iokBlue = "#0d274d"
 const iokBlue1 = "#14475C"
-const iokDarkBlue = "#002939"
-const iokLightBlue = "#d6f4f5"
+const iokDarkBlue = "#98e4f7"
+const iokLightBlue = "#0d274d"
 
 const iokAmber = "#f18c4e"
 const iokLightAmber = "#fde9d1"
@@ -34,7 +34,7 @@ const iokBlueGrey = "#578392"
 const colorPrimaryBackground = iokBlue
 const colorPrimaryDark = iokDarkBlue
 const colorPrimaryLight = iokLightBlue
-const colorPrimaryText = iokWhite
+const colorPrimaryText = iokBlue
 
 const colorSecondaryBackground = iokAmber
 /* const colorSecondaryDark = iokAmber */

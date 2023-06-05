@@ -1,1 +1,1 @@
-# IOK 2023 - Live
+# NetAcad 25 - Live
