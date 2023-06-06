@@ -50,7 +50,7 @@ type RegistrationData = {
 	stage: number | null
 }
 
-const useRegistrationData = (regId: string|null, regNeeded = false) : [RegistrationData|null, boolean, boolean] => {
+const useRegistrationData = (regId: string|null, regNeeded = false) : [RegistrationData|null, boolean, boolean] => { //Itt kell átírni, hogy ne kelljen regisztráció
 	const [registrationData, setRegistrationData] = useState<RegistrationData|null>(null)
 	const [loading, setLoading] = useState(true)
 	const [error, setError] = useState(false)
@@ -60,7 +60,7 @@ const useRegistrationData = (regId: string|null, regNeeded = false) : [Registrat
 		(async () => {
 			if (regId && String(regId) !== String(JSON.parse(iokLocalStorage("get", "iok_registration_data") as string)?.id)) {
 				iokLocalStorage("remove","iok_registration_data")
-				const res = await fetch("https://wy8qg2hpoh.execute-api.eu-west-1.amazonaws.com/default/iokRegistrationData?id=" + regId + "&eventId=netacad25")
+				const res = await fetch("https://wy8qg2hpoh.execute-api.eu-west-1.amazonaws.com/default/iokRegistrationData?id=" + regId + "&eventId=netacad25hu")
 				const data = await res.json()
 				if (data.id) {
 					setRegistrationData(data)
@@ -214,7 +214,8 @@ export const StoreProvider = (props: { children: React.ReactElement }) => {
 					value
 				}
 				galleryUrl
-				presidentStaffId		
+				presidentStaffId
+				registrationRequired		
 			}
 			allSpeakers(first: 100) {
 				id
@@ -327,7 +328,10 @@ export const StoreProvider = (props: { children: React.ReactElement }) => {
 	const [pageTitle, setPageTitle] = useState("NetAcad 25")
 
 	const regId = (new URLSearchParams(window.location.search)).get('q') || null
-	const [registration, registrationLoading, registrationError] = useRegistrationData(regId, false) // TODO: lambdaból jöjjön
+	const { registrationRequired } = liveStaticElements
+	console.log({registrationRequired})
+	const [registration, registrationLoading, registrationError] = useRegistrationData(regId, true) // TODO: lambdaból jöjjön, itt derül ki, hogy kell
+	console.log({liveStaticElements})
 
 	const store:IStore = useMemo(() => ({
 		stages,

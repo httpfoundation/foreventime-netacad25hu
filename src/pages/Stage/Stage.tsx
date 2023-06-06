@@ -117,11 +117,11 @@ const StagePage = () => {
 	return (
 		<>
 			<Box sx={{height: {xs: 'auto', lg: '100%'}, minHeight: '100%', 'display': 'flex', flexDirection: 'column', backgroundColor: 'primary.main'}}>
-				{ fabs.map((fab, index) => <Tooltip title={fab.title} placement="bottom" arrow key={index}>
+{/* 				{ fabs.map((fab, index) => <Tooltip title={fab.title} placement="bottom" arrow key={index}>
 					<Fab disabled={fab.disabled} color="primary" aria-label="home" sx={{position: 'absolute', right: 170 + (index*70), top: 80, zIndex: 900, display: {lg: 'flex', xs: 'none'}}} component={Link} to={fab.to} >
 						{fab.icon}
 					</Fab>
-				</Tooltip>)}
+				</Tooltip>)} */}
 				<Box sx={{bgcolor: "primary.main", mb: '-8px'}}>
 					<PageTitle>{stage?.pageTitle}</PageTitle>
 				</Box>
@@ -153,14 +153,14 @@ const StagePage = () => {
 								</div>
 								<Tabs textColor="secondary" indicatorColor="secondary" value={selectedTab} onChange={(e, v) => setSelectedTab(v)} centered sx={{"& button": {color:"text.primary"}, mt: stage?.streams?.length ? 1 : 0, color:"text.secondary"}}>
 									<Tab label="Program" />
-									<Tab label="Kérdések" />
+									{/* <Tab label="Kérdések" /> */}
 									<Tab label="Chat" disabled={chatDisabled} />
 								</Tabs>
 							</AppBar>
 							<Box sx={{flex: 1, overflow: "auto", backgroundColor: "info.main"}}>
 								{ selectedTab === 0 && <Box sx={{px: 1}}>{ stage?.schedule?.map(talk => <ScheduleItem onPlay={streamId => setSelectedStreamId(streamId)} onClick={() => setOpenScheduleItem(openScheduleItem === talk.id ? null : talk.id)} open={openScheduleItem === talk.id} key={talk.id} talkId={talk.id} />) }</Box> }
-								{ selectedTab === 1 && <Questions schedule={stage?.schedule} stageId={stage?.id} /> }
-								{ selectedTab === 2 && selectedStream && 
+								{/* { selectedTab === 1 && <Questions schedule={stage?.schedule} stageId={stage?.id} /> } */}
+								{ selectedTab === 1 && selectedStream && 
 								<Box sx={{position: "relative", flex: 1, height: '100%', overflowY: 'hidden', minHeight: '500px', backgroupColor: "primary.main"}}>
 									<Box sx={{position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)'}}><CircularProgress sx={{zIndex: 100}} color="secondary" /></Box>
 									<iframe key={selectedStream?.youtubeVideoId} title="chat" style={{position: 'relative', width: '100%', height: '100%', minHeight: '500px'}} allowFullScreen frameBorder="0" src={`https://www.youtube.com/live_chat?v=${selectedStream?.youtubeVideoId}&embed_domain=${embedDomain}&dark_theme=0`}></iframe>

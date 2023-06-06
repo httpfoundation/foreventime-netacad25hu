@@ -8,10 +8,10 @@ export const AllPresenters = () => {
 
 	return (
 		<PageContainer>
-			<PageTitle>Előadóink</PageTitle>
+			<PageTitle>Akikkel együtt ünnepelhetünk</PageTitle>
 
 			<PresenterGrid>
-				{presenters.map((presenter, index) => (
+				{presenters.filter(presenter => presenter.image).map((presenter, index) => (
 					<PresenterCard presenter={presenter} key={index} />
 				))}
 			</PresenterGrid>

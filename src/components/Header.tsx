@@ -33,13 +33,10 @@ const Header = () => {
 		{label: 'Köszöntő', to: '/koszonto', icon: <EventNoteIcon />},
 		{label: 'Program', to: '/eloadasok', icon: <EventNoteIcon />},
 		{label: 'Előadók', to: '/eloadok', icon: <PeopleIcon />},
-		{divider: true},
-		{label: 'Szekciók', divider: true, icon: <LiveTvIcon sx={{mr: 1, transform: 'translateY(5px)', color: 'rgba(0, 0, 0, 0.4)'}} />},
-		...stages.map(stage => ({label: stage.name, to: `/szekcio/${stage.slug}`})), 
-		{divider: true},
- 		{label: 'IOK Cafe', to: '/iok-cafe', icon: <CoffeeIcon />},
-		{label: 'Támogatók', to: '/tamogatok', icon: <StarIcon />},
-		{label: 'Értékelő űrlap', to: '/ertekeles', icon: <StarIcon />},
+		{label: 'Nagyelőadó', to: '/szekcio/plenaris', icon: <EventNoteIcon />},
+/*  		{label: 'IOK Cafe', to: '/iok-cafe', icon: <CoffeeIcon />}, */
+		{label: 'Díjalapítók', to: '/tamogatok', icon: <StarIcon />},
+		/* {label: 'Értékelő űrlap', to: '/ertekeles', icon: <StarIcon />}, */
 		{divider: true},
 		{label: 'Kijelentkezés', to: '/kijelentkezes', icon: <LogoutIcon />},
 	], [stages])
@@ -64,7 +61,7 @@ const Header = () => {
 			onClose={() => setDrawerOpen(false)} 
 			PaperProps={{ sx: { bgcolor: "primary.dark" } }}
 		>
-			<Box sx={{ width: 370, pt: '64px', maxWidth: 'calc(100vw - 20px)', backgroundColor: "primary.main"}} role="presentation">
+			<Box sx={{ width: 370, pt: '64px', maxWidth: 'calc(100vw - 20px)', backgroundColor: "primary.dark"}} role="presentation">
 				<List>
 					{menuItems.map((menuItem, index) => {
 
@@ -90,8 +87,8 @@ const Header = () => {
 		</Drawer>
 
 		
-		<AppBar position="fixed" color="primary" sx={{
-			zIndex: theme => theme.zIndex.drawer + 1
+		<AppBar position="fixed" color="inherit" sx={{
+			zIndex: theme => theme.zIndex.drawer + 1, backgroundColor: "info.main"
 		}}>
 			<Toolbar>
 				<Box sx={{flex: '0 0 auto', transform: 'translateY(2px)'}}>
@@ -118,7 +115,7 @@ const Header = () => {
 			</Zoom>
 		)}
 
-		{(location.pathname !== "/infopult") && isInfoButtonVisible &&  (
+{/* 		{(location.pathname !== "/infopult") && isInfoButtonVisible &&  (
 			<Zoom in>
 				<Tooltip title="Tovább az információs pulthoz" placement="bottom" arrow>
 					<Fab color="secondary" sx={{position: 'absolute', right: location.pathname !== "/" ? 100 : 30, top: 80, zIndex: 800, display: {lg: 'flex', xs: 'none'}}} component={Link} to="/infopult" >
@@ -127,7 +124,7 @@ const Header = () => {
 				</Tooltip>
 			</Zoom>
 			)
-		}
+		} */}
 
 		{ (location.pathname !== "/" && !location.pathname.includes("/szekcio")) && (
 			<Zoom in>

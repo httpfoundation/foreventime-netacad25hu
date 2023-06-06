@@ -13,6 +13,7 @@ import MessageBoard from "../pages/MessageBoard"
 import Logout from "./Logout"
 import Rating from "../pages/Rating"
 import MenuCard from "../pages/MenuCard"
+import Prize from "../pages/Prize"
 import Handout from "../pages/Handout"
 import IokTheme from "../pages/ThemeDemo"
 import { iokLocalStorage } from "../utils"
@@ -48,6 +49,8 @@ const Router = () =>{
 			<Route path="/infopult" element={<Reception />} />
 			{/* Welcome */}
 			<Route path="/koszonto/*" element={<Welcome />} />
+			{/* Prize */}
+			<Route path="/dijak/*" element={<Prize />} />			
 			{/* Stage */}
 			<Route path={"/stage/:stageId"} element={<StagePage />} />
 			<Route path={"/szekcio/:stageId"} element={<StagePage />} />

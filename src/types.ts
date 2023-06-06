@@ -161,6 +161,7 @@ export type DatoLiveStaticElement = {
 		streamNotLive?: any
 		galleryUrl?: string
 		presidentStaffId?: number
+		registrationRequired?: boolean
 	}
 
 export type DashboardElement = {

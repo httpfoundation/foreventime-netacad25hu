@@ -31,17 +31,46 @@ const iokGrey = "#9e9e9e"
 const iokLightGrey = "#cecece"
 const iokBlueGrey = "#578392"
 
-const colorPrimaryBackground = iokBlue
+const netacad25DarkBlue = "#0d274d"
+const netacad25LightBlue1 = "#a8e8f8"
+const netacad25LightBlue2 = "#c1effa"
+const netacad25LightBlue3 = "#def6fc"
+const netacad25White = "#fff"
+const netacad25Black = "#000"
+const netacad25Amber = "#fbab2c"
+const netacad25MiddleBlue = "#224367" //#37547e"
+
+
+
+const colorPrimaryBackground = netacad25DarkBlue
+const colorPrimaryDark = netacad25DarkBlue
+const colorPrimaryLight = netacad25White
+
+const colorPrimaryText = netacad25Amber
+
+const colorSecondaryBackground = netacad25Amber
+const colorSecondaryLight = iokLightAmber
+const colorSecondaryText = netacad25White
+
+
+
+const colorTextDisabled = iokGrey
+const colorInfo = netacad25MiddleBlue
+
+const colorBlack = iokBlack
+const colorWhite = iokWhite
+const colorLightGrey = iokLightGrey
+
+/* const colorPrimaryBackground = iokBlue
 const colorPrimaryDark = iokDarkBlue
 const colorPrimaryLight = iokLightBlue
 const colorPrimaryText = iokBlue
 
 const colorSecondaryBackground = iokAmber
-/* const colorSecondaryDark = iokAmber */
 const colorSecondaryLight = iokLightAmber
 const colorSecondaryText = iokWhite
 
-const colorInfoBackground = iokBlue //iokBlueGrey
+const colorInfoBackground = iokBlue 
 
 const colorTextDisabled = iokGrey
 const colorInfo = iokInfo
@@ -49,7 +78,7 @@ const colorInfo = iokInfo
 const colorBlack = iokBlack
 const colorWhite = iokWhite
 const colorGrey = iokGrey
-const colorLightGrey = iokLightGrey
+const colorLightGrey = iokLightGrey */
 
 
 /* const colorDark = iokDarkBlue //iokAmber // iokDarkBlue
@@ -60,14 +89,15 @@ const colorDashboardCaption = iokBlue //educationnextDarkGreen */
 
 
 
+
 let theme = createTheme({
 	palette: {
 		mode: 'light',
 		primary: {
-		  main: colorPrimaryBackground,
-		  dark: colorPrimaryDark,
-		  light: colorPrimaryLight,
-		  contrastText: colorPrimaryText,
+		  main: colorPrimaryDark,
+/* 		  dark: colorPrimaryLight,
+		  light: colorPrimaryLight, */
+		  contrastText: colorPrimaryLight,
 		},
 		secondary: {
 		  main: colorSecondaryBackground, 
@@ -81,7 +111,7 @@ let theme = createTheme({
 
 		},
 		text: {
-			primary:colorWhite, //"rgba(0, 0, 0, 0.87)",
+			primary: colorPrimaryText, //"rgba(0, 0, 0, 0.87)",
 			secondary: colorBlack, //'#14475C',
 			disabled: colorTextDisabled
 		},

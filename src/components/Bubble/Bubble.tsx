@@ -134,7 +134,7 @@ const BubbleWrapper = styled("div",
 			display: "inlineBlock",
 			position: "relative",
 			aspectRatio: "1",
-			backgroundColor: (bubbleWrapperProps.light) ? theme.palette.info.light :theme.palette.primary.dark,
+			backgroundColor: (bubbleWrapperProps.light) ? theme.palette.primary.light :theme.palette.primary.dark,
 			transition: "transform 0.2s, box-shadow 0.2s ",
 			...bubbleWrapperProps,
 			"&:hover": {
