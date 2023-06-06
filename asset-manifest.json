@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.21e2f3c6.css",
-    "main.js": "/static/js/main.5646cb74.js",
+    "main.js": "/static/js/main.0c79241b.js",
     "static/js/953.80625b0b.chunk.js": "/static/js/953.80625b0b.chunk.js",
     "static/css/245.7bfb5ed4.chunk.css": "/static/css/245.7bfb5ed4.chunk.css",
     "static/js/245.2b3da3a3.chunk.js": "/static/js/245.2b3da3a3.chunk.js",
@@ -25,6 +25,7 @@
     "static/media/ecaeee69.woff": "/static/media/ecaeee69.2670dd1be1994dd8fa97.woff",
     "static/media/6a79ddf2.woff2": "/static/media/6a79ddf2.2a46a0df01af604a584c.woff2",
     "static/media/46a31acd.woff2": "/static/media/46a31acd.3ee4e037f2c9b9fe01e1.woff2",
+    "static/media/almasi_bela.jpg": "/static/media/almasi_bela.8ed6ff6e72f33d134d8f.jpg",
     "static/media/f98de399.woff2": "/static/media/f98de399.c29a67837f49033662f9.woff2",
     "static/media/45dc7dcd.woff2": "/static/media/45dc7dcd.eea418627741308b87ce.woff2",
     "static/media/6c0c2778.woff2": "/static/media/6c0c2778.ca633863ebdb74b3e797.woff2",
@@ -43,13 +44,13 @@
     "static/media/iokcafe4.png": "/static/media/iokcafe4.aaff3fe7894148873b2e.png",
     "index.html": "/index.html",
     "main.21e2f3c6.css.map": "/static/css/main.21e2f3c6.css.map",
-    "main.5646cb74.js.map": "/static/js/main.5646cb74.js.map",
+    "main.0c79241b.js.map": "/static/js/main.0c79241b.js.map",
     "953.80625b0b.chunk.js.map": "/static/js/953.80625b0b.chunk.js.map",
     "245.7bfb5ed4.chunk.css.map": "/static/css/245.7bfb5ed4.chunk.css.map",
     "245.2b3da3a3.chunk.js.map": "/static/js/245.2b3da3a3.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.21e2f3c6.css",
-    "static/js/main.5646cb74.js"
+    "static/js/main.0c79241b.js"
   ]
 }
