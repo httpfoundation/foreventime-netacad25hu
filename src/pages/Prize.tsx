@@ -8,7 +8,7 @@ import { useLiveStaticElements, usePresident, useRegistration } from "../Store"
 import {Home as HomeIcon, PermDeviceInformation as InformationIcon } from '@mui/icons-material'
 import { Link } from "react-router-dom"
 import { iokLocalStorage } from "../utils"
-import almasibelaimg from "../assets/images/almasi_bela.jpg"
+import almasibelaimg from "../assets/images/almasi_bela_2.jpg"
 
 const ChairmanImage = styled('img')`
 	width: 100%;
