@@ -30,15 +30,15 @@ export const SinglePresenter = () => {
 	return (
 		<PageContainer container>
 			<PageTitle >Előadó</PageTitle>
-			<Grid container spacing={4} sx={{mb: 4}}>
+			<Grid container spacing={4} sx={{mb: 4, color: 'primary.contrastText'}}>
 				<Grid item xs={12} md={4}>
-					<PresenterImage src={presenter?.image?.url} alt={presenter?.name} />
+					{presenter?.image && <PresenterImage src={presenter?.image?.url} alt={presenter?.name} />}
 				</Grid>
 				<Grid item xs={12} md={8} sx={{display: "flex", flexDirection: "column", justifyContent: "flex-end", pb: 1}}>
 					<TalkTitle variant="h2" align="left" sx={{color:"text.primary"}}>{presenter?.name}</TalkTitle>
-					<PageSubtitle>{presenter?.title}, {presenter?.company}</PageSubtitle>
-					{presenter?.bio && <Paragraph>
-						{presenter.bio}
+					<PageSubtitle>{presenter?.title===":" ?  presenter?.company : `${presenter?.company}, ${presenter?.title}`}</PageSubtitle>
+					{(presenter?.bio && presenter?.bio!=="-") && <Paragraph>
+						{presenter.bio} sdas
 					</Paragraph>}
 				</Grid>
 			</Grid>

@@ -52,10 +52,10 @@ const PresenterCard = (props: {presenter: DatoSpeaker, noClick?: boolean}) => {
 	return (
 		<LinkOrSpan to={`/eloadok/${presenter.slug}`}>
 			<PresenterWrapper noClick={noClick}>
-				<PresenterCardImage src={props.presenter.image?.url} alt={presenter.name} />
+				{props.presenter.image &&<PresenterCardImage src={props.presenter.image?.url} alt={presenter.name} />}
 				<PresenterDetails>
 					<PresenterName>{presenter.name}</PresenterName>
-					{(presenter.title || presenter.company) && <PresenterTitle>{presenter.title}{presenter.title && presenter.company ? ", " : ""}{presenter.company}</PresenterTitle>}
+					{(presenter.title || presenter.company) && <PresenterTitle>{presenter?.title===":" ?  presenter?.company : `${presenter?.company}, ${presenter?.title}`}</PresenterTitle>}
 				</PresenterDetails>
 			</PresenterWrapper>
 		</LinkOrSpan>

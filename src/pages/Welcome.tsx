@@ -8,6 +8,7 @@ import { useLiveStaticElements, usePresident, useRegistration } from "../Store"
 import {Home as HomeIcon, PermDeviceInformation as InformationIcon } from '@mui/icons-material'
 import { Link } from "react-router-dom"
 import { iokLocalStorage } from "../utils"
+import netacadimg from "../assets/images/netacad25_image.png"	
 
 const ChairmanImage = styled('img')`
 	width: 100%;
@@ -40,15 +41,15 @@ const Welcome = () => {
             <PageTitle>Köszöntő</PageTitle>
 			<Grid container spacing={4} sx={{mb: 4}}>
 				<Grid item xs={12} md={4}>
-					<ChairmanImage src={chairman?.image?.url} alt={chairman?.name} />
-					<Box sx={{color:"primary.contrastText"}}>
-						<Name >{chairman?.name}</Name>
-						<Title>{chairman?.title}, {chairman?.company}</Title>
-					</Box>
+					<ChairmanImage src={netacadimg} alt={"NetAcad 25"} />
 				</Grid>
 				<Grid item xs={12} md={8} sx={{display: "flex", flexDirection: "column", justifyContent: "flex-end", pb: 1, color:"primary.contrastText"}}>
                     <Name >Kedves {registration?.name}!</Name>
                     <StructuredText data={welcome}></StructuredText> 
+					<Box sx={{color:"primary.contrastText", pb: 3 }}>
+						<Name >{chairman?.name}</Name>
+						<Title>{chairman?.title}, {chairman?.company}</Title>
+					</Box>
 					<Box>
 						<Link to="/utmutato">
 							<Button variant="contained" color="secondary" startIcon={<InformationIcon /> } sx={{mr: 1, pt:1, pb:1, mt: {xs: 1, md: 0}}}>Tovább az útmutatóhoz</Button>
