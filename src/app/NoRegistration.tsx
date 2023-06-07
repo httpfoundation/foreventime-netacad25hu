@@ -1,7 +1,7 @@
 import { Button, Divider, TextField, Tooltip, Typography, Paper, Alert, AlertTitle, Box, Grow, Zoom } from '@mui/material'
 import React, { useState } from 'react'
 import { Login as LoginIcon } from '@mui/icons-material'
-import imageOnTop from '../assets/img/itmp-1.png'
+import imageOnTop from '../assets/images/netacad25_image.png'
 import { useRegistration } from '../Store'
 
 export const NoRegistration = () => {
@@ -21,12 +21,12 @@ export const NoRegistration = () => {
 			sx={{ 
 				margin: 'auto', 
 				bgcolor: 'primary.main', 
-				p: 4, color: 'text.primary', 
+				p: 4, color: 'primary.contrastText', 
 				borderRadius: '8px', 
 				textAlign: 'center', 
 				width: '600px', 
 				maxWidth: '100%',
-				fontWeight: '600',
+				fontWeight: '600'
 			}}
 		>
 			{error && <Zoom in><Alert severity="error" sx={{ mb: 4 , textAlign: 'left', pr: 3 }} >
@@ -38,9 +38,9 @@ export const NoRegistration = () => {
 				Ha még nem regisztráltál, akkor kattints az alábbi "Regisztráció" gombra.
 			</Alert></Zoom> }
 			<Typography variant="h5" sx={{ fontWeight: 'bold', mb: 4 }} >
-				A NetAcad 25 ünnepi rendezványen való részvétel regisztrációhoz kötött!!
+				A NetAcad 25 ünnepi rendezvényen való részvétel regisztrációhoz kötött!!
 			</Typography>
-			<img src={imageOnTop} alt="" style={{ width: '200px', maxWidth: '70%' }} />
+			<img src={imageOnTop} alt="" style={{ width: '80%', maxWidth: '80%' }} />
 			<Typography variant="body1" component="p" sx={{  my: 1 }}>
 				Regisztrálj, és emailben megkapod a bejelentkezéshez használható személyes linkedet és a személyes kódodat!
 			</Typography>
@@ -50,7 +50,7 @@ export const NoRegistration = () => {
 				color="secondary"
 				sx={{ mt: 2 }} 
 				size="large" 
-				href="https://iok2023.http-alapitvany.hu/">
+				href="https://25.netacad.hu/">
 					Regisztráció
 			</Button>
 

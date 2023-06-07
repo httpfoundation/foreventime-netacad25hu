@@ -13,7 +13,9 @@ const Handout = () => {
  		<PageContainer container>
 			 <Box>
 				<PageTitle>Virtuális konferenciaközpont használati útmutató</PageTitle>
-				<StructuredText data={handoutText}></StructuredText> 
+				<Box sx={{color: 'primary.contrastText'}}>
+					<StructuredText data={handoutText}></StructuredText> 
+				</Box>
 			 </Box>
 		</PageContainer> 
 	)
