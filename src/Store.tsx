@@ -330,7 +330,7 @@ export const StoreProvider = (props: { children: React.ReactElement }) => {
 	const regId = (new URLSearchParams(window.location.search)).get('q') || null
 	const { registrationRequired } = liveStaticElements
 	console.log({registrationRequired})
-	const [registration, registrationLoading, registrationError] = useRegistrationData(regId, true) // TODO: lambdaból jöjjön, itt derül ki, hogy kell
+	const [registration, registrationLoading, registrationError] = useRegistrationData(regId, false) // TODO: lambdaból jöjjön, itt derül ki, hogy kell
 	console.log({liveStaticElements})
 
 	const store:IStore = useMemo(() => ({
